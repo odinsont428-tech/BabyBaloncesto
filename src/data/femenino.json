@@ -1,0 +1,717 @@
+{
+  "phases": [
+    {
+      "id": "primera-fecha",
+      "name": "Primera Fecha",
+      "date": "22 de octubre",
+      "matches": [
+        {
+          "time": "11:00 AM",
+          "team1": "Club Atenas - Contadero",
+          "team2": "Club Phoenix - Pasto",
+          "result1": 31,
+          "result2": 42,
+          "group": "C vs C"
+        },
+        {
+          "time": "12:00 PM",
+          "team1": "Club Javeriano - Pasto",
+          "team2": "Club SYC - Ipiales",
+          "result1": 45,
+          "result2": 9,
+          "group": "B vs B"
+        },
+        {
+          "time": "1:00 PM",
+          "team1": "E. B. - Carlosama",
+          "team2": "Wasps Club B - Sibundoy",
+          "result1": 9,
+          "result2": 66,
+          "group": "C vs C"
+        },
+        {
+          "time": "2:00 PM",
+          "team1": "Wasps Club A - Sibundoy",
+          "team2": "Power's - Ipiales",
+          "result1": 0,
+          "result2": 79,
+          "group": "A vs A"
+        },
+        {
+          "time": "3:00 PM",
+          "team1": "Club Panteras - Pasto",
+          "team2": "I.E. San Juan Bautista - Santacruz",
+          "result1": 33,
+          "result2": 19,
+          "group": "A vs A"
+        }
+      ],
+      "standings": [
+        {
+          "pos": 1,
+          "team": "Power's - Ipiales",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "points_for": 79,
+          "points_against": 0,
+          "difference": 79,
+          "total_points": 2
+        },
+        {
+          "pos": 2,
+          "team": "Wasps Club B - Sibundoy",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "points_for": 66,
+          "points_against": 9,
+          "difference": 57,
+          "total_points": 2
+        },
+        {
+          "pos": 3,
+          "team": "Club Javeriano - Pasto",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "points_for": 45,
+          "points_against": 9,
+          "difference": 36,
+          "total_points": 2
+        },
+        {
+          "pos": 4,
+          "team": "Club Phoenix - Pasto",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "points_for": 42,
+          "points_against": 31,
+          "difference": 11,
+          "total_points": 2
+        },
+        {
+          "pos": 5,
+          "team": "Club Panteras - Pasto",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "points_for": 33,
+          "points_against": 19,
+          "difference": 14,
+          "total_points": 2
+        },
+        {
+          "pos": 6,
+          "team": "Club Atenas - Contadero",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "points_for": 31,
+          "points_against": 42,
+          "difference": -11,
+          "total_points": 1
+        },
+        {
+          "pos": 7,
+          "team": "I.E. San Juan Bautista - Santacruz",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "points_for": 19,
+          "points_against": 33,
+          "difference": -14,
+          "total_points": 1
+        },
+        {
+          "pos": 8,
+          "team": "Club SYC - Ipiales",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "points_for": 9,
+          "points_against": 45,
+          "difference": -36,
+          "total_points": 1
+        },
+        {
+          "pos": 9,
+          "team": "E. B. - Carlosama",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "points_for": 9,
+          "points_against": 66,
+          "difference": -57,
+          "total_points": 1
+        },
+        {
+          "pos": 10,
+          "team": "Wasps Club A - Sibundoy",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "points_for": 0,
+          "points_against": 79,
+          "difference": -79,
+          "total_points": 1
+        }
+      ],
+      "fair_play": [
+        {
+          "team": "Club Javeriano - Pasto",
+          "technical_fouls": 2,
+          "player_expulsions": 0,
+          "staff_expulsions": 0,
+          "other_sanctions": 0,
+          "fair_play_score": 0
+        },
+        {
+          "team": "Club Phoenix - Pasto",
+          "technical_fouls": 1,
+          "player_expulsions": 0,
+          "staff_expulsions": 0,
+          "other_sanctions": 0,
+          "fair_play_score": 0
+        },
+        {
+          "team": "Power's - Ipiales",
+          "technical_fouls": 1,
+          "player_expulsions": 0,
+          "staff_expulsions": 0,
+          "other_sanctions": 0,
+          "fair_play_score": 0
+        },
+        {
+          "team": "Wasps Club B - Sibundoy",
+          "technical_fouls": 2,
+          "player_expulsions": 0,
+          "staff_expulsions": 0,
+          "other_sanctions": 0,
+          "fair_play_score": 0
+        }
+      ],
+      "top_scorers": [
+        {
+          "pos": 1,
+          "player": "Alejandra Cumbal Jurado",
+          "team": "Power's - Ipiales",
+          "total_points": 25,
+          "games_played": 1,
+          "average": 25.0
+        },
+        {
+          "pos": 2,
+          "player": "Sarai Burbano Rivera",
+          "team": "Wasps Club B - Sibundoy",
+          "total_points": 22,
+          "games_played": 1,
+          "average": 22.0
+        },
+        {
+          "pos": 3,
+          "player": "Juliana Andrade Ordóñez",
+          "team": "Club Phoenix - Pasto",
+          "total_points": 18,
+          "games_played": 1,
+          "average": 18.0
+        },
+        {
+          "pos": 4,
+          "player": "María Isabella Rivas Córdoba",
+          "team": "Club Phoenix - Pasto",
+          "total_points": 16,
+          "games_played": 1,
+          "average": 16.0
+        }
+      ]
+    },
+    {
+      "id": "segunda-fecha",
+      "name": "Segunda Fecha",
+      "date": "23 de octubre",
+      "matches": [
+        {
+          "time": "11:00 AM",
+          "team1": "I.E. San Juan Bautista - Santacruz",
+          "team2": "Wasps Club A - Sibundoy",
+          "result1": 34,
+          "result2": 6,
+          "group": "A vs A"
+        },
+        {
+          "time": "12:00 PM",
+          "team1": "Power's - Ipiales",
+          "team2": "Club Panteras - Pasto",
+          "result1": 52,
+          "result2": 16,
+          "group": "A vs A"
+        },
+        {
+          "time": "1:00 PM",
+          "team1": "E. B. - Carlosama",
+          "team2": "Club Phoenix - Pasto",
+          "result1": 8,
+          "result2": 45,
+          "group": "C vs C"
+        },
+        {
+          "time": "2:00 PM",
+          "team1": "Club SYC - Ipiales",
+          "team2": "Wasps Club B - Sibundoy",
+          "result1": 16,
+          "result2": 60,
+          "group": "B vs C"
+        },
+        {
+          "time": "3:00 PM",
+          "team1": "Club Javeriano - Pasto",
+          "team2": "Club Atenas - Contadero",
+          "result1": 22,
+          "result2": 28,
+          "group": "B vs C"
+        }
+      ],
+      "standings": [
+        {
+          "pos": 1,
+          "team": "Power's - Ipiales",
+          "played": 2,
+          "won": 2,
+          "lost": 0,
+          "points_for": 131,
+          "points_against": 16,
+          "difference": 115,
+          "total_points": 4
+        },
+        {
+          "pos": 2,
+          "team": "Wasps Club B - Sibundoy",
+          "played": 2,
+          "won": 2,
+          "lost": 0,
+          "points_for": 126,
+          "points_against": 25,
+          "difference": 101,
+          "total_points": 4
+        },
+        {
+          "pos": 3,
+          "team": "Club Phoenix - Pasto",
+          "played": 2,
+          "won": 2,
+          "lost": 0,
+          "points_for": 87,
+          "points_against": 39,
+          "difference": 48,
+          "total_points": 4
+        },
+        {
+          "pos": 4,
+          "team": "Club Atenas - Contadero",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "points_for": 59,
+          "points_against": 64,
+          "difference": -5,
+          "total_points": 3
+        },
+        {
+          "pos": 5,
+          "team": "Club Javeriano - Pasto",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "points_for": 67,
+          "points_against": 37,
+          "difference": 30,
+          "total_points": 3
+        },
+        {
+          "pos": 6,
+          "team": "I.E. San Juan Bautista - Santacruz",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "points_for": 53,
+          "points_against": 39,
+          "difference": 14,
+          "total_points": 3
+        },
+        {
+          "pos": 7,
+          "team": "Club Panteras - Pasto",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "points_for": 49,
+          "points_against": 71,
+          "difference": -22,
+          "total_points": 3
+        },
+        {
+          "pos": 8,
+          "team": "Club SYC - Ipiales",
+          "played": 2,
+          "won": 0,
+          "lost": 2,
+          "points_for": 25,
+          "points_against": 105,
+          "difference": -80,
+          "total_points": 2
+        },
+        {
+          "pos": 9,
+          "team": "E. B. - Carlosama",
+          "played": 2,
+          "won": 0,
+          "lost": 2,
+          "points_for": 17,
+          "points_against": 111,
+          "difference": -94,
+          "total_points": 2
+        },
+        {
+          "pos": 10,
+          "team": "Wasps Club A - Sibundoy",
+          "played": 2,
+          "won": 0,
+          "lost": 2,
+          "points_for": 6,
+          "points_against": 113,
+          "difference": -107,
+          "total_points": 2
+        }
+      ],
+      "fair_play": [
+        {
+          "team": "Power's - Ipiales",
+          "technical_fouls": 2,
+          "player_expulsions": 0,
+          "staff_expulsions": 0,
+          "other_sanctions": 0,
+          "fair_play_score": 0
+        },
+        {
+          "team": "Wasps Club B - Sibundoy",
+          "technical_fouls": 3,
+          "player_expulsions": 0,
+          "staff_expulsions": 0,
+          "other_sanctions": 0,
+          "fair_play_score": 5
+        },
+        {
+          "team": "Club Phoenix - Pasto",
+          "technical_fouls": 2,
+          "player_expulsions": 0,
+          "staff_expulsions": 0,
+          "other_sanctions": 0,
+          "fair_play_score": 0
+        },
+        {
+          "team": "Club Atenas - Contadero",
+          "technical_fouls": 2,
+          "player_expulsions": 0,
+          "staff_expulsions": 0,
+          "other_sanctions": 0,
+          "fair_play_score": 0
+        }
+      ],
+      "top_scorers": [
+        {
+          "pos": 1,
+          "player": "Alejandra Cumbal Jurado",
+          "team": "Power's - Ipiales",
+          "total_points": 45,
+          "games_played": 2,
+          "average": 22.5
+        },
+        {
+          "pos": 2,
+          "player": "Sarai Burbano Rivera",
+          "team": "Wasps Club B - Sibundoy",
+          "total_points": 42,
+          "games_played": 2,
+          "average": 21.0
+        },
+        {
+          "pos": 3,
+          "player": "María Isabella Rivas Córdoba",
+          "team": "Club Phoenix - Pasto",
+          "total_points": 35,
+          "games_played": 2,
+          "average": 17.5
+        },
+        {
+          "pos": 4,
+          "player": "Juliana Andrade Ordóñez",
+          "team": "Club Phoenix - Pasto",
+          "total_points": 32,
+          "games_played": 2,
+          "average": 16.0
+        }
+      ]
+    },
+    {
+      "id": "tercera-fecha",
+      "name": "Tercera Fecha",
+      "date": "24 de octubre",
+      "matches": [
+        {
+          "time": "11:00 AM",
+          "team1": "Club Javeriano - Pasto",
+          "team2": "E. B. - Carlosama",
+          "result1": 55,
+          "result2": 6,
+          "group": "B vs C"
+        },
+        {
+          "time": "12:00 PM",
+          "team1": "Club SYC - Ipiales",
+          "team2": "Club Atenas - Contadero",
+          "result1": 15,
+          "result2": 41,
+          "group": "B vs C"
+        },
+        {
+          "time": "1:00 PM",
+          "team1": "I.E. San Juan Bautista - Santacruz",
+          "team2": "Power's - Ipiales",
+          "result1": 6,
+          "result2": 70,
+          "group": "A vs A"
+        },
+        {
+          "time": "2:00 PM",
+          "team1": "Wasps Club B - Sibundoy",
+          "team2": "Club Phoenix - Pasto",
+          "result1": 43,
+          "result2": 36,
+          "group": "C vs C"
+        },
+        {
+          "time": "3:00 PM",
+          "team1": "Club Panteras - Pasto",
+          "team2": "Wasps Club A - Sibundoy",
+          "result1": 58,
+          "result2": 11,
+          "group": "A vs A"
+        }
+      ],
+      "standings": [
+        {
+          "pos": 1,
+          "team": "Power's - Ipiales",
+          "played": 3,
+          "won": 3,
+          "lost": 0,
+          "points_for": 201,
+          "points_against": 22,
+          "difference": 179,
+          "total_points": 6
+        },
+        {
+          "pos": 2,
+          "team": "Wasps Club B - Sibundoy",
+          "played": 3,
+          "won": 3,
+          "lost": 0,
+          "points_for": 169,
+          "points_against": 61,
+          "difference": 108,
+          "total_points": 6
+        },
+        {
+          "pos": 3,
+          "team": "Club Phoenix - Pasto",
+          "played": 3,
+          "won": 2,
+          "lost": 1,
+          "points_for": 123,
+          "points_against": 82,
+          "difference": 41,
+          "total_points": 5
+        },
+        {
+          "pos": 4,
+          "team": "Club Panteras - Pasto",
+          "played": 3,
+          "won": 2,
+          "lost": 1,
+          "points_for": 107,
+          "points_against": 82,
+          "difference": 25,
+          "total_points": 5
+        },
+        {
+          "pos": 5,
+          "team": "Club Atenas - Contadero",
+          "played": 3,
+          "won": 2,
+          "lost": 1,
+          "points_for": 100,
+          "points_against": 79,
+          "difference": 21,
+          "total_points": 5
+        },
+        {
+          "pos": 6,
+          "team": "Club Javeriano - Pasto",
+          "played": 3,
+          "won": 2,
+          "lost": 1,
+          "points_for": 122,
+          "points_against": 43,
+          "difference": 79,
+          "total_points": 5
+        },
+        {
+          "pos": 7,
+          "team": "I.E. San Juan Bautista - Santacruz",
+          "played": 3,
+          "won": 1,
+          "lost": 2,
+          "points_for": 59,
+          "points_against": 109,
+          "difference": -50,
+          "total_points": 4
+        },
+        {
+          "pos": 8,
+          "team": "Club SYC - Ipiales",
+          "played": 3,
+          "won": 0,
+          "lost": 3,
+          "points_for": 40,
+          "points_against": 146,
+          "difference": -106,
+          "total_points": 3
+        },
+        {
+          "pos": 9,
+          "team": "E. B. - Carlosama",
+          "played": 3,
+          "won": 0,
+          "lost": 3,
+          "points_for": 23,
+          "points_against": 166,
+          "difference": -143,
+          "total_points": 3
+        },
+        {
+          "pos": 10,
+          "team": "Wasps Club A - Sibundoy",
+          "played": 3,
+          "won": 0,
+          "lost": 3,
+          "points_for": 17,
+          "points_against": 169,
+          "difference": -152,
+          "total_points": 3
+        }
+      ],
+      "fair_play": [
+        {
+          "team": "Power's - Ipiales",
+          "technical_fouls": 2,
+          "player_expulsions": 0,
+          "staff_expulsions": 0,
+          "other_sanctions": 0,
+          "fair_play_score": 0
+        },
+        {
+          "team": "Wasps Club B - Sibundoy",
+          "technical_fouls": 4,
+          "player_expulsions": 0,
+          "staff_expulsions": 0,
+          "other_sanctions": 0,
+          "fair_play_score": 5
+        },
+        {
+          "team": "Club Phoenix - Pasto",
+          "technical_fouls": 3,
+          "player_expulsions": 0,
+          "staff_expulsions": 0,
+          "other_sanctions": 0,
+          "fair_play_score": 5
+        },
+        {
+          "team": "Club Atenas - Contadero",
+          "technical_fouls": 3,
+          "player_expulsions": 0,
+          "staff_expulsions": 0,
+          "other_sanctions": 0,
+          "fair_play_score": 5
+        }
+      ],
+      "top_scorers": [
+        {
+          "pos": 1,
+          "player": "Sarai Burbano Rivera",
+          "team": "Wasps Club B - Sibundoy",
+          "total_points": 109,
+          "games_played": 6,
+          "average": 18.2
+        },
+        {
+          "pos": 2,
+          "player": "Alejandra Cumbal Jurado",
+          "team": "Power's - Ipiales",
+          "total_points": 83,
+          "games_played": 6,
+          "average": 13.8
+        },
+        {
+          "pos": 3,
+          "player": "María Isabella Rivas Córdoba",
+          "team": "Club Phoenix - Pasto",
+          "total_points": 66,
+          "games_played": 6,
+          "average": 11.0
+        },
+        {
+          "pos": 4,
+          "player": "Juliana Andrade Ordóñez",
+          "team": "Club Phoenix - Pasto",
+          "total_points": 55,
+          "games_played": 6,
+          "average": 9.2
+        },
+        {
+          "pos": 5,
+          "player": "Isabela Huertas Ibarra",
+          "team": "Club Panteras - Pasto",
+          "total_points": 52,
+          "games_played": 4,
+          "average": 13.0
+        }
+      ]
+    }
+  ],
+  "groups": {
+    "A": [
+      { "name": "Wasps Club A", "city": "Sibundoy" },
+      { "name": "Power's", "city": "Ipiales" },
+      { "name": "Club Panteras", "city": "Pasto" },
+      { "name": "I.E. San Juan Bautista", "city": "Guachavez Santacruz" }
+    ],
+    "B": [
+      { "name": "Club Javeriano", "city": "Pasto" },
+      { "name": "Club SYC", "city": "Ipiales" },
+      { "name": "Club Atenas", "city": "Contadero" }
+    ],
+    "C": [
+      { "name": "E. B.", "city": "Carlosama" },
+      { "name": "Wasps Club B", "city": "Sibundoy" },
+      { "name": "Club Phoenix", "city": "Pasto" }
+    ]
+  },
+  "final_results": {
+    "champion": "Wasps Club B - Sibundoy",
+    "runner_up": "Power's - Ipiales",
+    "third_place": "Club Phoenix - Pasto",
+    "fourth_place": "Club Atenas - Contadero"
+  }
+}

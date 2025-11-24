@@ -1,0 +1,455 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import MatchCard from '../../components/MatchCard.astro';
+import PhotoGallery from '../../components/PhotoGallery.astro';
+import StandingsTable from '../../components/StandingsTable.astro';
+import TopScorersTable from '../../components/TopScorersTable.astro';
+import TeamBadge from '../../components/TeamBadge.astro';
+
+// Importar datos dinámicos
+import masculinoData from '../../data/masculino.json';
+
+// Obtener todas las fases disponibles
+const phases = masculinoData.phases;
+const currentPhase = phases[phases.length - 1]; // Mostrar la fase más reciente por defecto
+const cloudBase = 'https://res.cloudinary.com/dny2fuvgi/image/upload';
+const teamsA = [
+  { name: 'Panteras', city: 'Pasto', img: `${cloudBase}/v1763848624/Imagen2_p8xmps.webp` },
+  { name: 'Wasps', city: 'Sibundoy', img: `${cloudBase}/v1763848236/logoWasps_hcnejv.webp` },
+  { name: 'Atenas', city: 'Contadero', img: `${cloudBase}/v1763848623/Imagen6_hf87r7.webp` },
+];
+const teamsB = [
+  { name: 'Berchos', city: 'Pasto', img: `${cloudBase}/v1763848625/Imagen4_q7h4xc.webp` },
+  { name: 'Javeriano', city: 'Sibundoy', img: `${cloudBase}/v1763848623/Imagen1_fddlhp.webp` },
+  { name: 'S&C', city: 'Contadero', img: `${cloudBase}/v1763848623/SyC_q1ptqn.webp` },
+];
+// Mapa de logos por nombre de equipo (puedes agregar más entradas según necesites)
+const logos = Object.fromEntries([...teamsA, ...teamsB].map(t => [t.name, t.img]));
+---
+
+<BaseLayout title="Categoría Masculina - Baby Baloncesto 2025">
+  <Header />
+
+  <!-- Hero Section Masculino -->
+  <section class="bg-gradient-to-br from-masculino/20 via-masculino/10 to-white py-20 court-lines">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="mb-8 justify-center flex">
+      <img src="https://res.cloudinary.com/dny2fuvgi/image/upload/v1763854337/logoBabybaloncesto_rhwin8.webp" alt="Logotipo de Baby Baloncesto — Nariño y Putumayo 2025" class="h-36 w-auto" loading="lazy">
+      </div>
+      
+      <h1 class="text-4xl md:text-6xl font-black text-dark-gray mb-4">
+        CATEGORÍA <span class="text-masculino">MASCULINA</span>
+      </h1>
+      <p class="text-xl text-gray-700 mb-8">
+        Municipio de Puerres 2025
+      </p>
+
+      <!-- Quick Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <div class="bg-white/60 backdrop-blur rounded-2xl p-4 shadow-lg">
+          <div class="text-2xl font-black text-masculino">6</div>
+          <div class="text-sm font-semibold text-gray-700">Equipos</div>
+        </div>
+        <div class="bg-white/60 backdrop-blur rounded-2xl p-4 shadow-lg">
+          <div class="text-2xl font-black text-masculino">2</div>
+          <div class="text-sm font-semibold text-gray-700">Grupos</div>
+        </div>
+        <div class="bg-white/60 backdrop-blur rounded-2xl p-4 shadow-lg">
+          <div class="text-2xl font-black text-masculino">5</div>
+          <div class="text-sm font-semibold text-gray-700">Días</div>
+        </div>
+        <div class="bg-white/60 backdrop-blur rounded-2xl p-4 shadow-lg">
+          <div class="text-2xl font-black text-masculino">15</div>
+          <div class="text-sm font-semibold text-gray-700">Partidos</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation Phases -->
+  <section class="bg-white py-8 sticky top-20 z-40 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex flex-wrap justify-center gap-4">
+        <a href="#grupos" class="bg-masculino/10 text-masculino px-4 py-2 rounded-full font-semibold hover:bg-masculino hover:text-white transition-all">Grupos</a>
+        <a href="#tablas" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-masculino hover:text-white transition-all">Tablas</a>
+        <a href="#primera-fecha" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-masculino hover:text-white transition-all">Primera Fecha</a>
+        <a href="#segunda-fecha" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-masculino hover:text-white transition-all">Segunda Fecha</a>
+        <a href="#tercera-fecha" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-masculino hover:text-white transition-all">Tercera Fecha</a>
+        <a href="#semifinal" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-masculino hover:text-white transition-all">Semifinal</a>
+        <a href="#final" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-masculino hover:text-white transition-all">Final</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Tabla de Grupos -->
+  <section id="grupos" class="py-16 bg-gradient-to-r from-masculino/5 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-12 text-dark-gray">
+        TABLA DE <span class="text-masculino">GRUPOS</span>
+      </h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Grupo A -->
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+          <div class="bg-masculino text-white p-4 text-center">
+            <h3 class="text-2xl font-bold">GRUPO A</h3>
+          </div>
+<div class="p-6 space-y-4">
+  {teamsA.map((team) => (
+    <div class="flex items-center justify-between p-3 bg-masculino/5 rounded-xl">
+      <TeamBadge name={team.name} img={team.img} size="md" />
+      <span class="text-sm text-gray-600 ml-4 hidden sm:inline">{team.city}</span>
+    </div>
+  ))}
+</div>
+        </div>
+
+        <!-- Grupo B -->
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+          <div class="bg-masculino text-white p-4 text-center">
+            <h3 class="text-2xl font-bold">GRUPO B</h3>
+          </div>
+<div class="p-6 space-y-4">
+  {teamsB.map((team) => (
+    <div class="flex items-center justify-between p-3 bg-masculino/5 rounded-xl">
+      <TeamBadge name={team.name} img={team.img} size="md" />
+      <span class="text-sm text-gray-600 ml-4 hidden sm:inline">{team.city}</span>
+    </div>
+  ))}
+</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tablas de Estadísticas -->
+  <section id="tablas" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-12 text-dark-gray">
+        ESTADÍSTICA
+      </h2>
+
+      <!-- Selector de Fases -->
+      <div class="flex justify-center mb-8">
+        <div class="bg-white rounded-2xl shadow-lg p-2 flex flex-wrap gap-2">
+          {phases.map((phase, index) => (
+            <button 
+              class={`px-4 py-2 rounded-xl font-semibold transition-all phase-selector ${
+                index === phases.length - 1 ? 'bg-masculino text-white' : 'text-gray-600 hover:bg-masculino/10'
+              }`}
+              data-phase={phase.id}
+            >
+              {phase.name}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div class="space-y-12">
+        {phases.map((phase, index) => (
+          <div 
+            class={`phase-content ${index === phases.length - 1 ? '' : 'hidden'}`}
+            data-phase={phase.id}
+          >
+            <!-- Tabla de Posiciones -->
+            <div class="mb-12">
+              <StandingsTable 
+                standings={phase.standings}
+                category="masculino"
+                phase={phase.name}
+                logos={logos}
+              />
+            </div>
+
+            <!-- Tablas en Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-1 gap-8">
+              <!-- Fair Play -->
+{/*               <div>
+                <FairPlayTable 
+                  fairPlay={phase.fair_play}
+                  category="masculino"
+                  phase={phase.name}
+                  logos={logos}
+                />
+              </div> */}
+
+              <!-- Top Scorers -->
+              <div>
+                <TopScorersTable 
+                  topScorers={phase.top_scorers}
+                  category="masculino"
+                  phase={phase.name}
+                  logos={logos}
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Primera Fecha -->
+  <section id="primera-fecha" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-4 text-dark-gray">
+        PRIMERA <span class="text-masculino">FECHA</span>
+      </h2>
+      <p class="text-center text-lg text-gray-600 mb-12">Miércoles, 22 de Octubre</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <h3 class="text-2xl font-bold text-masculino mb-6">Partidos</h3>
+          <MatchCard 
+            time="4:00 PM" 
+            team1=" Panteras - Pasto"
+            team2="Wasps - Sibundoy"
+            result1={22}
+            result2={52}
+            group="A"
+            category="masculino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="5:00 PM" 
+            team1="Berchos - Pasto"
+            team2="Javeriano - Pasto"
+            result1={46}
+            result2={27}
+            group="B"
+            category="masculino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="6:00 PM" 
+            team1=" Atenas - Contadero"
+            team2=" S&C - Ipiales"
+            result1={23}
+            result2={18}
+            group="A vs B"
+            category="masculino"
+            logos={logos}
+          />
+        </div>
+
+        <div>
+          <PhotoGallery 
+            phase="Primera Fecha"
+            category="masculino"
+            id="masculino-primera"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Segunda Fecha -->
+  <section id="segunda-fecha" class="py-16 bg-masculino/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-4 text-dark-gray">
+        SEGUNDA <span class="text-masculino">FECHA</span>
+      </h2>
+      <p class="text-center text-lg text-gray-600 mb-12">Jueves, 23 de Octubre</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <h3 class="text-2xl font-bold text-masculino mb-6">Partidos</h3>
+          <MatchCard 
+            time="4:00 PM" 
+            team1="Berchos - Pasto"
+            team2=" S&C - Ipiales"
+            result1={51}
+            result2={11}
+            group="B"
+            category="masculino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="5:00 PM" 
+            team1=" Panteras - Pasto"
+            team2=" Atenas - Contadero"
+            result1={28}
+            result2={27}
+            group="A"
+            category="masculino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="6:00 PM" 
+            team1="Wasps - Sibundoy"
+            team2="Javeriano - Pasto"
+            result1={38}
+            result2={8}
+            group="A vs B"
+            category="masculino"
+            logos={logos}
+          />
+        </div>
+
+        <div>
+          <PhotoGallery 
+            phase="Segunda Fecha"
+            category="masculino"
+            id="masculino-segunda"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tercera Fecha -->
+  <section id="tercera-fecha" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-4 text-dark-gray">
+        TERCERA <span class="text-masculino">FECHA</span>
+      </h2>
+      <p class="text-center text-lg text-gray-600 mb-12">Viernes, 24 de Octubre</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <h3 class="text-2xl font-bold text-masculino mb-6">Partidos</h3>
+          <MatchCard 
+            time="4:00 PM" 
+            team1="Wasps - Sibundoy"
+            team2=" Atenas - Contadero"
+            result1={52}
+            result2={28}
+            group="A"
+            category="masculino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="5:00 PM" 
+            team1="Javeriano - Pasto"
+            team2=" S&C - Ipiales"
+            result1={35}
+            result2={18}
+            group="B"
+            category="masculino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="6:00 PM" 
+            team1=" Panteras - Pasto"
+            team2="Berchos - Pasto"
+            result1={18}
+            result2={49}
+            group="A vs B"
+            category="masculino"
+            logos={logos}
+          />
+        </div>
+
+        <div>
+          <PhotoGallery 
+            phase="Tercera Fecha"
+            category="masculino"
+            id="masculino-tercera"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Semifinal -->
+  <section id="semifinal" class="py-16 bg-gradient-to-r from-masculino/10 to-masculino/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-4 text-dark-gray">
+        <span class="text-masculino">SEMIFINAL</span>
+      </h2>
+      <p class="text-center text-lg text-gray-600 mb-4">Sábado, 25 de Octubre</p>
+      <p class="text-center text-sm text-gray-600 mb-12">Clasifican los 2 primeros de cada grupo</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <h3 class="text-2xl font-bold text-masculino mb-6">Partidos</h3>
+          <MatchCard 
+            time="2:00 PM" 
+            team1="Wasps - Sibundoy"
+            team2="Javeriano - Pasto"
+            result1={43}
+            result2={18}
+            group="S1"
+            category="masculino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="3:00 PM" 
+            team1="Berchos - Pasto"
+            team2=" Panteras - Pasto"
+            result1={42}
+            result2={13}
+            group="S2"
+            category="masculino"
+            logos={logos}
+          />
+        </div>
+
+        <div>
+          <PhotoGallery 
+            phase="Semifinal"
+            category="masculino"
+            id="masculino-semifinal"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final -->
+  <section id="final" class="py-16 bg-gradient-to-br from-masculino/20 via-masculino/10 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-4 text-dark-gray">
+        GRAN <span class="text-masculino">FINAL</span>
+      </h2>
+      <p class="text-center text-lg text-gray-600 mb-12">Domingo, 26 de Octubre</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <h3 class="text-2xl font-bold text-masculino mb-6">Partidos Finales</h3>
+          
+          <div class="bg-white/80 backdrop-blur rounded-2xl p-6 shadow-xl">
+            <h4 class="text-lg font-bold text-gray-700 mb-4">3er y 4to Puesto</h4>
+            <MatchCard 
+              time="26 de octubre"
+              team1="Javeriano - Pasto"
+              team2=" Panteras - Pasto"
+              result1={38}
+              result2={25}
+              category="masculino"
+              logos={logos}
+            />
+          </div>
+
+          <div class="bg-gradient-to-r from-masculino/20 to-masculino/10 rounded-2xl p-6 shadow-xl border-2 border-masculino/30">
+            <h4 class="text-lg font-bold text-masculino mb-4 flex items-center space-x-2">
+              <span>🏆</span>
+              <span>1er y 2do Puesto</span>
+            </h4>
+            <MatchCard 
+              time="26 de octubre"
+              team1="Wasps - Sibundoy"
+              team2="Berchos - Pasto"
+              result1={32}
+              result2={16}
+              category="masculino"
+              logos={logos}
+            />
+          </div>
+        </div>
+
+        <div>
+          <PhotoGallery 
+            phase="Final"
+            category="masculino"
+            id="masculino-final"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

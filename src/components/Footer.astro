@@ -1,0 +1,148 @@
+---
+
+
+const supporters = [
+  {
+    name: "Alcaldía de Puerres",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763851025/image_1_ofgdt4.webp",
+    url: "https://www.puerres-narino.gov.co/",
+  },
+  {
+    name: "Lácteos Santa María",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763851026/image_devfya.webp",
+    url: "https://lacteossantamariapuerres.com/",
+  },
+  {
+    name: "Los Paisitas",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763851024/image_2_hoh6eh.webp",
+    url: "https://festivaldefestivales.com/",
+  },
+  {
+    name: "Festival de Festivales",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763852525/image_8_kaqplu.webp",
+    url: "https://festivaldefestivales.com/",
+  },
+  {
+    name: "LAB - Liga Antioqueña",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763851022/image_5_ssu3ie.webp",
+    url: "https://baloncestoantioquia.com/",
+  },
+  {
+    name: "OSBOL",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763851023/image_3_wrbp6q.webp",
+    url: "https://www.facebook.com/oscar.bolanos.446511?locale=es_LA",
+  },
+  {
+    name: "Fortaleza",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763851023/image_4_vpj13e.webp",
+    url: "https://www.facebook.com/profile.php?id=61552098326569&locale=es_LA",
+  },
+  {
+    name: "Alianza Sureña",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763852519/image_6_gbsfyi.webp",
+    url: "https://www.facebook.com/oscarbolanoscastro",
+  },
+  {
+    name: "Futuras Estrellas",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763852523/image_7_gxldeo.webp",
+    url: "https://www.facebook.com/oscararmando.bolanoscastro.7?locale=es_LA",
+  },
+];
+---
+
+<footer class="bg-dark-gray text-white py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Logo y descripción -->
+      <div class="space-y-4">
+        <div class="flex items-center space-x-3">
+          <img
+            src="https://res.cloudinary.com/dny2fuvgi/image/upload/v1763854337/logoBabybaloncesto_rhwin8.webp"
+            alt="Logotipo de Baby Baloncesto — Nariño y Putumayo 2025"
+            class="h-16 w-auto"
+            loading="lazy"
+          />
+
+          <div>
+            <h3 class="font-bold text-lg">Baby Baloncesto 2025</h3>
+            <p class="text-sm text-gray-300">Nariño y Putumayo</p>
+          </div>
+        </div>
+        <p class="text-gray-300 text-sm leading-relaxed">
+          Proyección: Baby Baloncesto Medellín 2026<br />
+          Aval: Corporación Social y Deportiva Los Paisitas – Medellín<br />
+          LAB – Liga Antioqueña de Baloncesto<br />
+          Coordinación Zonal: Alianza Sureña Grupo Empresarial<br />
+        </p>
+      </div>
+
+      <!-- Organizadores -->
+      <div class="space-y-4">
+        <h4 class="font-semibold text-lg text-masculino">Comisión Técnica</h4>
+        <div class="space-y-2 text-sm text-gray-300">
+          <p>
+            <strong>Oscar Armando Bolaños Castro</strong><br />
+            Coordinador Zonal Baby Baloncesto Nariño y Putumayo 2025<br />
+            <a
+              href="tel:3183773718"
+              class="hover:text-masculino transition-colors">📞 318 377 3718</a
+            >
+          </p>
+
+          <p>
+            <strong>Erika Lizeth Bolaños Pazmiño</strong><br />
+            Gerente General Alianza Sureña<br />
+            <a
+              href="tel:3153215383"
+              class="hover:text-masculino transition-colors">📞 315 321 5383</a
+            >
+          </p>
+        </div>
+      </div>
+
+      <!-- Patrocinadores -->
+      <div class="space-y-4">
+        <h4 class="font-semibold text-lg text-femenino">Apoyan</h4>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center justify-items-center"
+        >
+          {
+            supporters.map((supporter) => (
+              <a
+                href={supporter.url}
+                target="_blank"
+                rel="noopener"
+                aria-label={`Enlace: ${supporter.name}`}
+                class="group flex flex-col items-center w-full max-w-[10rem]"
+              >
+                <div class="bg-white rounded-full p-3 flex items-center justify-center shadow-md transition-transform transform group-hover:scale-105 w-44 h-44 md:w-20 md:h-20">
+                  <img
+                    src={supporter.img}
+                    alt={`Logo ${supporter.name}`}
+                    title={supporter.name}
+                    class="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                    onerror="this.onerror=null;this.src='/images/placeholder-escudo.png'; this.classList.add('opacity-70');"
+                  />
+                </div>
+                <figcaption class="mt-2 text-lg text-gray-300 text-center w-full whitespace-normal break-words leading-tight">
+                  {supporter.name}
+                </figcaption>
+              </a>
+            ))
+          }
+        </div>
+
+
+      </div>
+      
+    </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+          <p class="text-gray-400 text-sm">
+            © 2025 Alianza Sureña Grupo Empresarial – Todos los derechos
+            reservados.
+          </p>
+        </div>
+  </div>
+</footer>

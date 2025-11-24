@@ -1,0 +1,117 @@
+---
+interface Props {
+  fairPlay: Array<{
+    team: string;
+    technical_fouls: number;
+    player_expulsions: number;
+    staff_expulsions: number;
+    other_sanctions: number;
+    fair_play_score: number;
+  }>;
+  category: 'masculino' | 'femenino';
+  phase: string;
+  logos?: Record<string, string>;
+}
+
+const { fairPlay, category, phase, logos = {} } = Astro.props;
+import TeamBadge from './TeamBadge.astro';
+const accentColor = category === 'masculino' ? 'text-masculino' : 'text-femenino';
+const bgColor = category === 'masculino' ? 'bg-masculino' : 'bg-femenino';
+
+// Ordenar por puntaje Fair Play (menor es mejor)
+const sortedFairPlay = [...fairPlay].sort((a, b) => a.fair_play_score - b.fair_play_score);
+---
+
+<div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+  <div class={`${bgColor} text-white p-4`}>
+    <h3 class="text-xl font-bold flex items-center space-x-2">
+      <span>🤝</span>
+      <span>Tabla Fair Play - {phase}</span>
+    </h3>
+  </div>
+  
+  <div class="overflow-x-auto">
+    <table class="w-full">
+      <thead class="bg-gray-50">
+        <tr class="text-sm font-semibold text-gray-700">
+          <th class="px-4 py-3 text-left">Pos</th>
+          <th class="px-4 py-3 text-left">Equipo</th>
+          <th class="px-4 py-3 text-center">Faltas Técnicas</th>
+          <th class="px-4 py-3 text-center">Exp. Jugadores</th>
+          <th class="px-4 py-3 text-center">Exp. Técnicos</th>
+          <th class="px-4 py-3 text-center">Otras Sanciones</th>
+          <th class="px-4 py-3 text-center">Puntaje FP</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sortedFairPlay.map((team, index) => (
+          <tr class={`border-b hover:bg-gray-50 transition-colors ${index === 0 ? 'bg-green-50' : team.fair_play_score > 10 ? 'bg-red-50' : ''}`}>
+            <td class="px-4 py-3">
+              <div class="flex items-center space-x-2">
+                <span class={`font-bold ${index === 0 ? 'text-green-600' : 'text-gray-700'}`}>
+                  {index + 1}
+                </span>
+                {index === 0 && <span class="text-green-500">🏅</span>}
+              </div>
+            </td>
+            <td class="px-4 py-3">
+              {
+                (() => {
+                  const parts = String(team.team).split(' - ').map(s => s.trim());
+                  const name = parts[0] ?? team.team;
+                  const city = parts[1] ?? '';
+                  const img = logos[name] ?? logos[team.team] ?? undefined;
+                  return <TeamBadge name={name} city={city} img={img} size="sm" />;
+                })()
+              }
+            </td>
+            <td class="px-4 py-3 text-center">
+              <span class={`font-medium ${team.technical_fouls > 2 ? 'text-orange-600' : 'text-gray-700'}`}>
+                {team.technical_fouls}
+              </span>
+            </td>
+            <td class="px-4 py-3 text-center">
+              <span class={`font-medium ${team.player_expulsions > 0 ? 'text-red-600' : 'text-gray-700'}`}>
+                {team.player_expulsions}
+              </span>
+            </td>
+            <td class="px-4 py-3 text-center">
+              <span class={`font-medium ${team.staff_expulsions > 0 ? 'text-red-600' : 'text-gray-700'}`}>
+                {team.staff_expulsions}
+              </span>
+            </td>
+            <td class="px-4 py-3 text-center">
+              <span class={`font-medium ${team.other_sanctions > 0 ? 'text-red-600' : 'text-gray-700'}`}>
+                {team.other_sanctions}
+              </span>
+            </td>
+            <td class="px-4 py-3 text-center">
+              <span class={`font-bold text-lg ${
+                team.fair_play_score === 0 ? 'text-green-600' : 
+                team.fair_play_score <= 10 ? 'text-orange-600' : 'text-red-600'
+              }`}>
+                {team.fair_play_score}
+              </span>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="bg-gray-50 px-4 py-3 text-xs text-gray-600 space-y-1">
+    <p><strong>Sistema de puntuación:</strong> Menor puntaje = Mejor comportamiento</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+      <div>
+        <p>• Hasta 2 faltas técnicas → 0 pts</p>
+        <p>• 3-5 faltas técnicas → 5 pts</p>
+        <p>• Más de 5 faltas → 10 pts</p>
+      </div>
+      <div>
+        <p>• Expulsión jugador → 10 pts</p>
+        <p>• Expulsión técnico → 10 pts</p>
+        <p>• Agresión → 40 pts</p>
+      </div>
+    </div>
+  </div>
+</div>

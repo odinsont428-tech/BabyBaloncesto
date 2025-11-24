@@ -1,0 +1,615 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import MatchCard from '../../components/MatchCard.astro';
+import PhotoGallery from '../../components/PhotoGallery.astro';
+import StandingsTable from '../../components/StandingsTable.astro';
+import FairPlayTable from '../../components/FairPlayTable.astro';
+import TopScorersTable from '../../components/TopScorersTable.astro';
+import TeamBadge from '../../components/TeamBadge.astro';
+
+// Importar datos dinámicos
+import femeninoData from '../../data/femenino.json';
+
+// Obtener todas las fases disponibles
+const phases = femeninoData.phases;
+const currentPhase = phases[phases.length - 1]; // Mostrar la fase más reciente por defecto
+// Mapa vacío de logos (puedes rellenarlo con las URLs de Cloudinary más adelante)
+const logos = {
+  "Wasps Club A": "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848236/logoWasps_hcnejv.webp",
+  "Wasps Club B": "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848236/logoWasps_hcnejv.webp",
+  "Power's": "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848639/Imagen2_tgxady.png",
+  "Club Panteras": "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848624/Imagen2_p8xmps.webp",
+  "I.E. San Juan Bautista": "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848640/Imagen4_idu5ow.png",
+  "Club Javeriano": "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848623/Imagen1_fddlhp.webp",
+  "Club SYC": "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848623/SyC_q1ptqn.webp",
+  "Club Atenas": "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848623/Imagen6_hf87r7.webp",
+  "E. B.": "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763849924/Imagen3_pvakf8.png",
+  "Club Phoenix": "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848639/Imagen1_akjxi4.png"
+};
+
+// Grupos desde los datos (espera estructura { A: [...], B: [...], C: [...] })
+const groups = femeninoData.groups || {};
+
+
+---
+
+<BaseLayout title="Categoría Femenina - Baby Baloncesto 2025">
+  <Header />
+
+  <!-- Hero Section Femenino -->
+  <section class="bg-gradient-to-br from-femenino/20 via-femenino/10 to-white py-20 basketball-texture">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="mb-8">
+        <div class="w-24 h-24 mx-auto bg-femenino rounded-full flex items-center justify-center text-4xl shadow-2xl mb-6 animate-float">
+          🏀
+        </div>
+      </div>
+      
+      <h1 class="text-4xl md:text-6xl font-black text-dark-gray mb-4">
+        CATEGORÍA <span class="text-femenino">FEMENINA</span>
+      </h1>
+      <p class="text-xl text-gray-700 mb-8">
+        Zonal Baby Baloncesto Nariño y Putumayo 2025
+      </p>
+
+      <!-- Quick Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <div class="bg-white/60 backdrop-blur rounded-2xl p-4 shadow-lg">
+          <div class="text-2xl font-black text-femenino">10</div>
+          <div class="text-sm font-semibold text-gray-700">Equipos</div>
+        </div>
+        <div class="bg-white/60 backdrop-blur rounded-2xl p-4 shadow-lg">
+          <div class="text-2xl font-black text-femenino">3</div>
+          <div class="text-sm font-semibold text-gray-700">Grupos</div>
+        </div>
+        <div class="bg-white/60 backdrop-blur rounded-2xl p-4 shadow-lg">
+          <div class="text-2xl font-black text-femenino">5</div>
+          <div class="text-sm font-semibold text-gray-700">Días</div>
+        </div>
+        <div class="bg-white/60 backdrop-blur rounded-2xl p-4 shadow-lg">
+          <div class="text-2xl font-black text-femenino">24</div>
+          <div class="text-sm font-semibold text-gray-700">Partidos</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation Phases -->
+  <section class="bg-white py-8 sticky top-20 z-40 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex flex-wrap justify-center gap-4">
+        <a href="#grupos" class="bg-femenino/10 text-femenino px-4 py-2 rounded-full font-semibold hover:bg-femenino hover:text-white transition-all">Grupos</a>
+        <a href="#tablas" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-femenino hover:text-white transition-all">Tablas</a>
+        <a href="#primera-fecha" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-femenino hover:text-white transition-all">Primera Fecha</a>
+        <a href="#segunda-fecha" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-femenino hover:text-white transition-all">Segunda Fecha</a>
+        <a href="#tercera-fecha" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-femenino hover:text-white transition-all">Tercera Fecha</a>
+        <a href="#cuartos" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-femenino hover:text-white transition-all">Cuartos</a>
+        <a href="#semifinal" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-femenino hover:text-white transition-all">Semifinal</a>
+        <a href="#final" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-femenino hover:text-white transition-all">Final</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Tabla de Grupos -->
+  <section id="grupos" class="py-16 bg-gradient-to-r from-femenino/5 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-12 text-dark-gray">
+        TABLA DE <span class="text-femenino">GRUPOS</span>
+      </h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Grupo A -->
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+          <div class="bg-femenino text-white p-4 text-center">
+            <h3 class="text-2xl font-bold">GRUPO A</h3>
+          </div>
+          <div class="p-6 space-y-4">
+            {
+              (groups.A || []).map((team) => (
+                <div class="flex items-center justify-between p-3 bg-femenino/5 rounded-xl">
+                  <div class="flex items-center space-x-3 min-w-0">
+                    <TeamBadge name={team.name} city={team.city} img={logos[team.name as keyof typeof logos]} size="sm" />
+                  </div>
+                  <span class="text-sm text-gray-600 hidden sm:inline">{team.city}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Grupo B -->
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+          <div class="bg-femenino text-white p-4 text-center">
+            <h3 class="text-2xl font-bold">GRUPO B</h3>
+          </div>
+          <div class="p-6 space-y-4">
+            {
+              (groups.B || []).map((team) => (
+                <div class="flex items-center justify-between p-3 bg-femenino/5 rounded-xl">
+                  <div class="flex items-center space-x-3 min-w-0">
+                    <TeamBadge name={team.name} city={team.city} img={logos[team.name as keyof typeof logos]} size="sm" />
+                  </div>
+                  <span class="text-sm text-gray-600 hidden sm:inline">{team.city}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Grupo C -->
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+          <div class="bg-femenino text-white p-4 text-center">
+            <h3 class="text-2xl font-bold">GRUPO C</h3>
+          </div>
+          <div class="p-6 space-y-4">
+            {
+              (groups.C || []).map((team) => (
+                <div class="flex items-center justify-between p-3 bg-femenino/5 rounded-xl">
+                  <div class="flex items-center space-x-3 min-w-0">
+                    <TeamBadge name={team.name} city={team.city} img={logos[team.name as keyof typeof logos]} size="sm" />
+                  </div>
+                  <span class="text-sm text-gray-600 hidden sm:inline">{team.city}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tablas de Estadísticas -->
+  <section id="tablas" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-12 text-dark-gray">
+        ESTADÍSTICAS <span class="text-femenino">ACTUALES</span>
+      </h2>
+
+      <!-- Selector de Fases -->
+      <div class="flex justify-center mb-8">
+        <div class="bg-white rounded-2xl shadow-lg p-2 flex flex-wrap gap-2">
+          {phases.map((phase, index) => (
+            <button 
+              class={`px-4 py-2 rounded-xl font-semibold transition-all phase-selector ${
+                index === phases.length - 1 ? 'bg-femenino text-white' : 'text-gray-600 hover:bg-femenino/10'
+              }`}
+              data-phase={phase.id}
+            >
+              {phase.name}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div class="space-y-12">
+        {phases.map((phase, index) => (
+          <div 
+            class={`phase-content ${index === phases.length - 1 ? '' : 'hidden'}`}
+            data-phase={phase.id}
+          >
+            <!-- Tabla de Posiciones -->
+            <div class="mb-12">
+              <StandingsTable 
+                standings={phase.standings}
+                category="femenino"
+                phase={phase.name}
+                logos={logos}
+              />
+            </div>
+
+            <!-- Tablas en Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-1 gap-8">
+              <!-- Fair Play -->
+{/*               <div>
+                <FairPlayTable 
+                  fairPlay={phase.fair_play}
+                  category="femenino"
+                  phase={phase.name}
+                  logos={logos}
+                />
+              </div> */}
+
+              <!-- Top Scorers -->
+              <div>
+                <TopScorersTable 
+                  topScorers={phase.top_scorers}
+                  category="femenino"
+                  phase={phase.name}
+                  logos={logos}
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Primera Fecha -->
+  <section id="primera-fecha" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-4 text-dark-gray">
+        PRIMERA <span class="text-femenino">FECHA</span>
+      </h2>
+      <p class="text-center text-lg text-gray-600 mb-12">Miércoles, 22 de Octubre</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <h3 class="text-2xl font-bold text-femenino mb-6">Partidos</h3>
+          <MatchCard 
+            time="11:00 AM"
+            team1="Club Atenas - Contadero"
+            team2="Club Phoenix - Pasto"
+            result1={31}
+            result2={42}
+            group="C vs C"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="12:00 PM" 
+            team1="Club Javeriano - Pasto"
+            team2="Club SYC - Ipiales"
+            result1={45}
+            result2={9}
+            group="B vs B"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="1:00 PM" 
+            team1="E. B. - Carlosama"
+            team2="Wasps Club B - Sibundoy"
+            result1={9}
+            result2={66}
+            group="C vs C"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="2:00 PM" 
+            team1="Wasps Club A - Sibundoy"
+            team2="Power's - Ipiales"
+            result1={0}
+            result2={79}
+            group="A vs A"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="3:00 PM" 
+            team1="Club Panteras - Pasto"
+            team2="I.E. San Juan Bautista - Santacruz"
+            result1={33}
+            result2={19}
+            group="A vs A"
+            category="femenino"
+            logos={logos}
+          />
+        </div>
+
+        <div>
+          <PhotoGallery 
+            phase="Primera Fecha"
+            category="femenino"
+            id="femenino-primera"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Segunda Fecha -->
+  <section id="segunda-fecha" class="py-16 bg-femenino/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-4 text-dark-gray">
+        SEGUNDA <span class="text-femenino">FECHA</span>
+      </h2>
+      <p class="text-center text-lg text-gray-600 mb-12">Jueves, 23 de Octubre</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <h3 class="text-2xl font-bold text-femenino mb-6">Partidos</h3>
+          <MatchCard 
+            time="11:00 AM" 
+            team1="I.E. San Juan Bautista - Santacruz"
+            team2="Wasps Club A - Sibundoy"
+            result1={34}
+            result2={6}
+            group="A vs A"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="12:00 PM" 
+            team1="Power's - Ipiales"
+            team2="Club Panteras - Pasto"
+            result1={52}
+            result2={16}
+            group="A vs A"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="1:00 PM" 
+            team1="E. B. - Carlosama"
+            team2="Club Phoenix - Pasto"
+            result1={8}
+            result2={45}
+            group="C vs C"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="2:00 PM" 
+            team1="Club SYC - Ipiales"
+            team2="Wasps Club B - Sibundoy"
+            result1={16}
+            result2={60}
+            group="B vs C"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="3:00 PM" 
+            team1="Club Javeriano - Pasto"
+            team2="Club Atenas - Contadero"
+            result1={22}
+            result2={28}
+            group="B vs C"
+            category="femenino"
+            logos={logos}
+          />
+        </div>
+
+        <div>
+          <PhotoGallery 
+            phase="Segunda Fecha"
+            category="femenino"
+            id="femenino-segunda"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tercera Fecha -->
+  <section id="tercera-fecha" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-4 text-dark-gray">
+        TERCERA <span class="text-femenino">FECHA</span>
+      </h2>
+      <p class="text-center text-lg text-gray-600 mb-12">Viernes, 24 de Octubre</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <h3 class="text-2xl font-bold text-femenino mb-6">Partidos</h3>
+          <MatchCard 
+            time="11:00 AM" 
+            team1="Club Javeriano - Pasto"
+            team2="E. B. - Carlosama"
+            result1={55}
+            result2={6}
+            group="B vs C"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="12:00 PM" 
+            team1="Club SYC - Ipiales"
+            team2="Club Atenas - Contadero"
+            result1={15}
+            result2={41}
+            group="B vs C"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="1:00 PM" 
+            team1="I.E. San Juan Bautista - Santacruz"
+            team2="Power's - Ipiales"
+            result1={6}
+            result2={70}
+            group="A vs A"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="2:00 PM" 
+            team1="Wasps Club B - Sibundoy"
+            team2="Club Phoenix - Pasto"
+            result1={43}
+            result2={36}
+            group="C vs C"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="3:00 PM" 
+            team1="Club Panteras - Pasto"
+            team2="Wasps Club A - Sibundoy"
+            result1={58}
+            result2={11}
+            group="A vs A"
+            category="femenino"
+            logos={logos}
+          />
+        </div>
+
+        <div>
+          <PhotoGallery 
+            phase="Tercera Fecha"
+            category="femenino"
+            id="femenino-tercera"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cuartos de Final -->
+  <section id="cuartos" class="py-16 bg-gradient-to-r from-femenino/10 to-femenino/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-4 text-dark-gray">
+        CUARTOS DE <span class="text-femenino">FINAL</span>
+      </h2>
+      <p class="text-center text-lg text-gray-600 mb-4">Sábado, 25 de Octubre</p>
+      <p class="text-center text-sm text-gray-600 mb-12">Reclasificación: Los 8 primeros de la tabla general</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <h3 class="text-2xl font-bold text-femenino mb-6">Partidos</h3>
+          <MatchCard 
+            time="10:00 AM" 
+            team1="Power's - Ipiales"
+            team2="Club SYC - Ipiales"
+            result1={81}
+            result2={1}
+            group="Cuartos"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="11:00 AM" 
+            team1="Club Panteras - Pasto"
+            team2="Club Atenas - Contadero"
+            result1={27}
+            result2={31}
+            group="Cuartos"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="12:00 PM" 
+            team1="Wasps Club B - Sibundoy"
+            team2="I.E. San Juan Bautista - Santacruz"
+            result1={49}
+            result2={13}
+            group="Cuartos"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="1:00 PM" 
+            team1="Club Phoenix - Pasto"
+            team2="Club Javeriano - Pasto"
+            result1={37}
+            result2={25}
+            group="Cuartos"
+            category="femenino"
+            logos={logos}
+          />
+        </div>
+
+        <div>
+          <PhotoGallery 
+            phase="Cuartos de Final"
+            category="femenino"
+            id="femenino-cuartos"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Semifinal -->
+  <section id="semifinal" class="py-16 bg-femenino/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-4 text-dark-gray">
+        <span class="text-femenino">SEMIFINAL</span>
+      </h2>
+      <p class="text-center text-lg text-gray-600 mb-12">Sábado, 25 de Octubre</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <h3 class="text-2xl font-bold text-femenino mb-6">Partidos</h3>
+          <MatchCard 
+            time="4:00 PM" 
+            team1="Power's - Ipiales"
+            team2="Club Atenas - Contadero"
+            result1={64}
+            result2={25}
+            group="S1"
+            category="femenino"
+            logos={logos}
+          />
+          <MatchCard 
+            time="5:00 PM" 
+            team1="Wasps Club B - Sibundoy"
+            team2="Club Phoenix - Pasto"
+            result1={60}
+            result2={44}
+            group="S2"
+            category="femenino"
+            logos={logos}
+          />
+        </div>
+
+        <div>
+          <PhotoGallery 
+            phase="Semifinal"
+            category="femenino"
+            id="femenino-semifinal"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final -->
+  <section id="final" class="py-16 bg-gradient-to-br from-femenino/20 via-femenino/10 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-4 text-dark-gray">
+        GRAN <span class="text-femenino">FINAL</span>
+      </h2>
+      <p class="text-center text-lg text-gray-600 mb-12">Domingo, 26 de Octubre</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <h3 class="text-2xl font-bold text-femenino mb-6">Partidos Finales</h3>
+          
+          <div class="bg-white/80 backdrop-blur rounded-2xl p-6 shadow-xl">
+            <h4 class="text-lg font-bold text-gray-700 mb-4">3er y 4to Puesto</h4>
+            <MatchCard 
+              time="26 de octubre"
+              team1="Club Atenas - Contadero"
+              team2="Club Phoenix - Pasto"
+              result1={0}
+              result2={20}
+              category="femenino"
+              logos={logos}
+            />
+          </div>
+
+          <div class="bg-gradient-to-r from-femenino/20 to-femenino/10 rounded-2xl p-6 shadow-xl border-2 border-femenino/30">
+            <h4 class="text-lg font-bold text-femenino mb-4 flex items-center space-x-2">
+              <span>🏆</span>
+              <span>1er y 2do Puesto</span>
+            </h4>
+            <MatchCard 
+              time="26 de octubre"
+              team1="Power's - Ipiales"
+              team2="Wasps Club B - Sibundoy"
+              result1={47}
+              result2={52}
+              category="femenino"
+              logos={logos}
+            />
+          </div>
+        </div>
+
+        <div>
+          <PhotoGallery 
+            phase="Final"
+            category="femenino"
+            id="femenino-final"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

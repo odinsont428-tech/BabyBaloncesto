@@ -1,0 +1,63 @@
+---
+interface Props {
+  time: string;
+  team1: string;
+  team2: string;
+  group?: string;
+  result1?: number;
+  result2?: number;
+  category: 'masculino' | 'femenino';
+  logos?: Record<string, string>;
+}
+
+const { time, team1, team2, group, result1, result2, category, logos = {} } = Astro.props;
+const accentColor = category === 'masculino' ? 'text-masculino' : 'text-femenino';
+const borderColor = category === 'masculino' ? 'border-masculino/20' : 'border-femenino/20';
+const bgColor = category === 'masculino' ? 'from-masculino/5' : 'from-femenino/5';
+const hasResult = result1 !== undefined && result2 !== undefined;
+import TeamBadge from './TeamBadge.astro';
+
+function parseTeam(raw) {
+  const parts = String(raw).split(' - ').map(s => s.trim());
+  return { name: parts[0] ?? String(raw), city: parts[1] ?? '' };
+}
+const t1 = parseTeam(team1);
+const t2 = parseTeam(team2);
+const img1 = logos[t1.name] ?? logos[team1] ?? undefined;
+const img2 = logos[t2.name] ?? logos[team2] ?? undefined;
+---
+
+<div class={`bg-gradient-to-r ${bgColor} to-white border-l-4 ${borderColor.replace('/20', '')} rounded-lg p-4 hover-lift hover:shadow-md transition-all duration-200 ${hasResult ? 'border-l-green-500' : ''}`}>
+  <div class="flex items-center justify-between">
+    <div class="flex-1">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+          <span class={`font-bold text-sm ${hasResult ? 'text-green-600' : accentColor}`}>
+            {hasResult ? '✅ ' + time : time}
+          </span>
+          {group && <span class="text-xs bg-gray-200 px-2 py-1 rounded-full font-medium">Grupo {group}</span>}
+        </div>
+      </div>
+      
+      <div class="mt-2 space-y-1">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <TeamBadge name={t1.name} city={t1.city} img={img1} size="sm" />
+          </div>
+          {result1 !== undefined && (
+            <span class={`font-bold text-lg ${result1 > (result2 || 0) ? 'text-green-600' : accentColor}`}>{result1}</span>
+          )}
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <TeamBadge name={t2.name} city={t2.city} img={img2} size="sm" />
+          </div>
+          {result2 !== undefined && (
+            <span class={`font-bold text-lg ${result2 > (result1 || 0) ? 'text-green-600' : accentColor}`}>{result2}</span>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

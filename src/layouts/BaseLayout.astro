@@ -1,0 +1,117 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Zonal Baby Baloncesto Nariño y Putumayo 2025 - Proyección Baby Baloncesto Medellín 2026" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    
+    <!-- Poppins Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- PhotoSwipe CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.2/dist/photoswipe.css">
+  </head>
+  <body class="font-poppins bg-white text-dark-gray overflow-x-hidden">
+    <slot />
+    
+    <!-- PhotoSwipe JS -->
+    <script src="https://cdn.jsdelivr.net/npm/photoswipe@5.4.2/dist/umd/photoswipe.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/photoswipe@5.4.2/dist/umd/photoswipe-lightbox.umd.min.js"></script>
+  </body>
+</html>
+
+<style is:global>
+  body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .basketball-texture {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 2px, transparent 2px),
+      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 2px, transparent 2px);
+    background-size: 50px 50px;
+  }
+  
+  .court-lines {
+    background-image: 
+      linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .gradient-text {
+    background: linear-gradient(45deg, #34D399, #FB923C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hover-lift {
+    transition: all 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-5px);
+  }
+
+  .pswp {
+    z-index: 9999;
+  }
+
+  /* JavaScript para cambio de fases */
+  .phase-content.hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const phaseSelectors = document.querySelectorAll('.phase-selector');
+    const phaseContents = document.querySelectorAll('.phase-content');
+    
+    phaseSelectors.forEach(selector => {
+      selector.addEventListener('click', function() {
+        const targetPhase = this.getAttribute('data-phase');
+        
+        // Remover clase activa de todos los selectores
+        phaseSelectors.forEach(s => {
+          s.classList.remove('bg-masculino', 'bg-femenino', 'text-white');
+          s.classList.add('text-gray-600');
+        });
+        
+        // Agregar clase activa al selector clickeado
+        this.classList.remove('text-gray-600');
+        if (this.closest('[data-category="masculino"]') || window.location.pathname.includes('masculino')) {
+          this.classList.add('bg-masculino', 'text-white');
+        } else {
+          this.classList.add('bg-femenino', 'text-white');
+        }
+        
+        // Ocultar todos los contenidos
+        phaseContents.forEach(content => {
+          content.classList.add('hidden');
+        });
+        
+        // Mostrar el contenido seleccionado
+        const targetContent = document.querySelector(`.phase-content[data-phase="${targetPhase}"]`);
+        if (targetContent) {
+          targetContent.classList.remove('hidden');
+        }
+      });
+    });
+  });
+</script>

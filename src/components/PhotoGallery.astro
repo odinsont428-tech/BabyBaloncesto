@@ -1,0 +1,65 @@
+---
+interface Props {
+  phase: string;
+  category: 'masculino' | 'femenino';
+  id: string;
+}
+
+const { phase, category, id } = Astro.props;
+const accentColor = category === 'masculino' ? 'text-masculino' : 'text-femenino';
+
+// Sample images for demo - in production, these would be actual tournament photos
+const sampleImages = [
+  'https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg',
+  'https://images.pexels.com/photos/2835436/pexels-photo-2835436.jpeg',
+  'https://images.pexels.com/photos/1752755/pexels-photo-1752755.jpeg',
+  'https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg',
+  'https://images.pexels.com/photos/1432039/pexels-photo-1432039.jpeg',
+];
+---
+
+<div class="space-y-4">
+  <h3 class={`font-bold text-xl ${accentColor} flex items-center space-x-2`}>
+    <span>📸</span>
+    <span>Galería - {phase}</span>
+  </h3>
+  
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id={`gallery-${id}`}>
+    {sampleImages.map((image, index) => (
+      <a 
+        href={image}
+        data-pswp-width="1200"
+        data-pswp-height="800"
+        class="block aspect-square overflow-hidden rounded-xl hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl"
+      >
+        <img 
+          src={image} 
+          alt={`${phase} - Foto ${index + 1}`}
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </a>
+    ))}
+  </div>
+
+  <!-- Placeholder para más fotos -->
+  <div class="text-center py-8">
+    <div class="bg-light-gray rounded-xl p-8 border-2 border-dashed border-gray-300">
+      <span class="text-4xl">🏀</span>
+      <p class="text-gray-600 mt-2">Más fotos serán añadidas próximamente</p>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ id }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof PhotoSwipeLightbox !== 'undefined') {
+      const lightbox = new PhotoSwipeLightbox({
+        gallery: `#gallery-${id}`,
+        children: 'a',
+        pswpModule: PhotoSwipe
+      });
+      lightbox.init();
+    }
+  });
+</script>

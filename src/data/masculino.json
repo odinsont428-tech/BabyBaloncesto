@@ -1,0 +1,145 @@
+{
+  "phases": [
+    {
+      "id": "tercera-fecha",
+      "name": "Final - Masculino",
+      "date": "26 de octubre",
+      "matches": [],
+      "standings": [
+        {
+          "pos": 1,
+          "team": "Wasps - Sibundoy",
+          "played": 5,
+          "won": 5,
+          "lost": 0,
+          "points_for": 217,
+          "points_against": 92,
+          "difference": 125,
+          "AVG":2.36,
+          "total_points": 10
+        },
+        {
+          "pos": 2,
+          "team": "Berchos - Pasto",
+          "played": 5,
+          "won": 4,
+          "lost": 1,
+          "points_for": 204,
+          "points_against": 101,
+          "difference": 103,
+          "AVG":2.02,
+          "total_points": 9
+        },
+        {
+          "pos": 3,
+          "team": "Javeriano - Pasto",
+          "played": 5,
+          "won": 2,
+          "lost": 3,
+          "points_for": 126,
+          "points_against": 170,
+          "difference": -44,
+          "AVG":0.74,
+          "total_points": 7
+        },
+                {
+          "pos": 4,
+          "team": " Panteras - Pasto",
+          "played": 5,
+          "won": 1,
+          "lost": 4,
+          "points_for": 106,
+          "points_against": 208,
+          "difference": -102,
+          "AVG":0.51,
+          "total_points": 6
+        },
+        {
+          "pos": 5,
+          "team": " Atenas - Contadero",
+          "played": 3,
+          "won": 1,
+          "lost": 2,
+          "points_for": 78,
+          "points_against": 98,
+          "difference": -20,
+          "AVG":0.80,
+          "total_points": 4
+        },
+        {
+          "pos": 6,
+          "team": " S&C - Ipiales",
+          "played": 3,
+          "won": 0,
+          "lost": 3,
+          "points_for": 47,
+          "points_against": 109,
+          "difference": -62,
+          "AVG":0.43,
+          "total_points": 3
+        }
+      ],
+      "fair_play": [],
+      "top_scorers": [
+        {
+          "pos": 1,
+          "player": "Dilan Santiago Arredondo Castillo",
+          "team": "Wasps - Sibundoy",
+          "total_points": 96,
+          "games_played": 5,
+          "average": 19.2
+        },
+        {
+          "pos": 2,
+          "player": "Brayan Dario Cotrino Velasco",
+          "team": "Berchos - Pasto",
+          "total_points": 59,
+          "games_played": 5,
+          "average": 11.8
+        },
+        {
+          "pos": 3,
+          "player": "Samuel Alejandro Medina Erazo",
+          "team": "Javeriano - Pasto",
+          "total_points": 48,
+          "games_played": 5,
+          "average": 9.6
+        },
+        {
+          "pos": 4,
+          "player": "Emmanuel Ruiz Aguirre",
+          "team": "Wasps - Sibundoy",
+          "total_points": 37,
+          "games_played": 5,
+          "average": 7.4
+        },
+        {
+          "pos": 5,
+          "player": "Santiago Narváez Tobar",
+          "team": " Panteras - Pasto",
+          "total_points": 36,
+          "games_played": 5,
+          "average": 7.2
+        }
+      ]
+    }
+  ],
+  "groups": {
+    "A": [
+      { "name": "Panteras", "city": "Pasto" },
+      { "name": "Wasps", "city": "Sibundoy" },
+      { "name": "Atenas", "city": "Contadero" }
+    ],
+    "B": [
+      { "name": "Berchos", "city": "Pasto" },
+      { "name": "Javeriano", "city": "Pasto" },
+      { "name": "S&C", "city": "Ipiales" }
+    ]
+  },
+  "final_results": {
+    "champion": "Wasps - Sibundoy",
+    "runner_up": "Berchos - Pasto",
+    "third_place": "Javeriano - Pasto",
+    "fourth_place": " Panteras - Pasto"
+  }
+}

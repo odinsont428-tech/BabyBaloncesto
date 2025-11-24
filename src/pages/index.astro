@@ -1,0 +1,275 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import TeamCard from "../components/TeamCard.astro";
+const logoBase = "https://res.cloudinary.com/dny2fuvgi/image/upload";
+const logoSmall = `${logoBase}/w_300,q_auto,f_auto/logo00_p8henf.webp`;
+const logoMedium = `${logoBase}/w_600,q_auto,f_auto/logo00_p8henf.webp`;
+const logoLarge = `${logoBase}/w_1200,q_auto,f_auto/logo00_p8henf.webp`;
+
+const equiposMasculinos = [
+  { name: "Club Javeriano", city: "Pasto",img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848623/Imagen1_fddlhp.webp" },
+  { name: "Club Panteras", city: "Pasto",img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848624/Imagen2_p8xmps.webp" },
+  { name: "Wasps", city: "Sibundoy",img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848236/logoWasps_hcnejv.webp" },
+  { name: "Berchos", city: "Pasto",img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848625/Imagen4_q7h4xc.webp" },
+  { name: "Club S&C", city: "Ipiales",img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848623/SyC_q1ptqn.webp" },
+  { name: "Club Atenas", city: "Contadero",img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848623/Imagen6_hf87r7.webp" },
+];
+
+const equiposFemeninos = [
+  { name: "Club Javeriano", city: "Pasto", img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848623/Imagen1_fddlhp.webp" },
+  { name: "Club Phoenix", city: "Pasto", img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848639/Imagen1_akjxi4.png" },
+  { name: "Club SYC", city: "Ipiales", img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848623/SyC_q1ptqn.webp" },
+  { name: "Club Panteras", city: "Pasto", img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848624/Imagen2_p8xmps.webp" },
+  { name: "Wasps Club A", city: "Sibundoy", img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848236/logoWasps_hcnejv.webp" },
+  { name: "Wasps Club B", city: "Sibundoy", img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848236/logoWasps_hcnejv.webp" },
+  { name: "Power's", city: "Ipiales", img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848639/Imagen2_tgxady.png" },
+  { name: "Cuaspud", city: "Carlosama", img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763849924/Imagen3_pvakf8.png" },
+  { name: "I.E. San Juan Bautista", city: "Guachavez Santacruz", img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848640/Imagen4_idu5ow.png" },
+  { name: "Club Atenas", city: "Contadero", img:"https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848623/Imagen6_hf87r7.webp" },
+];
+---
+
+<BaseLayout title="Zonal Baby Baloncesto Nariño y Putumayo 2025">
+  <Header />
+
+  <!-- Hero Section -->
+  <section
+    class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-masculino/10 via-white to-femenino/10 basketball-texture"
+  >
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-white/20">
+    </div>
+
+    <div
+      class="relative z-10 text-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+    >
+      <!-- Logo animado -->
+      <div class="mb-8 animate-float justify-center flex">
+        <img
+          src={logoMedium}
+          srcset={`${logoSmall} 300w, ${logoMedium} 600w, ${logoLarge} 1200w`}
+          sizes="(max-width: 640px) 300px, (max-width: 1024px) 600px, 1200px"
+          alt="Logotipo de Baby Baloncesto — Logotipo oficial del Zonal Nariño y Putumayo 2025"
+          class="h-auto" 
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Título principal -->
+      <h1
+        class="text-4xl md:text-6xl lg:text-7xl font-black text-dark-gray mb-6 leading-tight"
+      >
+        ZONAL BABY
+        <span class="block gradient-text">BALONCESTO</span>
+        <span class="text-2xl md:text-3xl lg:text-4xl font-semibold block mt-2"
+          >Nariño y Putumayo 2025</span
+        >
+      </h1>
+
+      <!-- Subtítulo -->
+      <div class="space-y-2 mb-8">
+        <p class="text-xl md:text-2xl text-gray-700 font-semibold">
+          ⭐ Proyección: Baby Baloncesto Medellín 2026
+        </p>
+        <p class="text-lg text-gray-600">
+          📅 22-26 de Octubre, 2025 | 📍 <span class="text-xl text-black"  > Puerres, Nariño</span>
+        </p>
+        <div class="bg-white/80 backdrop-blur rounded-2xl p-6 shadow-xl mt-8">
+          <h3 class="text-2xl font-bold text-dark-gray mb-4">
+            🏆 CAMPEONES 2025
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="text-center">
+              <div class="text-4xl mb-2">👑</div>
+              <img src="https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848236/logoWasps_hcnejv.webp" alt="logo wasps" class="h-32 w-auto mx-auto mb-2" loading="lazy" />
+              <h4 class="text-xl font-bold text-masculino">MASCULINO</h4>
+              <p class="text-lg font-semibold">Wasps - Sibundoy</p>
+              <p class="text-sm text-gray-600">Campeón Zonal 2025</p>
+            </div>
+            <div class="text-center">
+              <div class="text-4xl mb-2">👑</div>
+               <img src="https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848236/logoWasps_hcnejv.webp" alt="logo wasps" class="h-32 w-auto mx-auto mb-2" loading="lazy" />
+              <h4 class="text-xl font-bold text-femenino">FEMENINO</h4>
+              <p class="text-lg font-semibold">Wasps Club B - Sibundoy</p>
+              <p class="text-sm text-gray-600">Campeón Zonal 2025</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones principales -->
+      <div
+        class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
+      >
+        <a
+          href="/masculino"
+          class="group bg-masculino hover:bg-masculino/90 text-white px-8 py-4 rounded-2xl font-bold text-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-3"
+        >
+          <span>🏀</span>
+          <span>VER CATEGORÍA MASCULINA</span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+
+        <a
+          href="/femenino"
+          class="group bg-femenino hover:bg-femenino/90 text-white px-8 py-4 rounded-2xl font-bold text-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-3"
+        >
+          <span>🏀</span>
+          <span>VER CATEGORÍA FEMENINA</span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Floating elements -->
+    <div class="absolute top-20 left-10 animate-bounce-slow opacity-20">
+      <span class="text-6xl">⚡</span>
+    </div>
+    <div class="absolute bottom-20 right-10 animate-pulse-slow opacity-20">
+      <span class="text-6xl">🏆</span>
+    </div>
+  </section>
+
+  <!-- Equipos Masculinos -->
+  <section class="py-20 bg-gradient-to-r from-masculino/5 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-black text-dark-gray mb-4">
+          EQUIPOS <span class="text-masculino">MASCULINOS</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          6 equipos participantes listos para dar lo mejor en la cancha
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          equiposMasculinos.map((equipo, index) => (
+            <TeamCard
+              name={equipo.name}
+              city={equipo.city}
+              category="masculino"
+              index={index}
+              img={equipo.img}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipos Femeninos -->
+  <section class="py-20 bg-gradient-to-l from-femenino/5 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-black text-dark-gray mb-4">
+          EQUIPOS <span class="text-femenino">FEMENINOS</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          10 equipos participantes demostrando el poder femenino en el
+          baloncesto
+        </p>
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      >
+        {
+          equiposFemeninos.map((equipo, index) => (
+            <TeamCard
+              name={equipo.name}
+              city={equipo.city}
+              category="femenino"
+              index={index}
+              img={equipo.img}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Información del Evento -->
+  <section class="py-20 bg-dark-gray text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-4xl md:text-5xl font-black mb-6">
+            <span class="gradient-text">INFORMACIÓN</span>
+            <span class="block">DEL EVENTO</span>
+          </h2>
+
+          <div class="space-y-6 text-lg">
+            <div class="flex items-start space-x-4">
+              <span class="text-masculino text-2xl">📅</span>
+              <div>
+                <h3 class="font-bold mb-2">Fechas del Torneo</h3>
+                <p class="text-gray-300">22 al 26 de Octubre, 2025</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <span class="text-femenino text-2xl">📍</span>
+              <div>
+                <h3 class="font-bold mb-2">Sede</h3>
+                <p class="text-gray-300">Coliseo Central - Puerres, Nariño</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <span class="text-masculino text-2xl">🏆</span>
+              <div>
+                <h3 class="font-bold mb-2">Proyección</h3>
+                <p class="text-gray-300">Baby Baloncesto Medellín 2026</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <span class="text-femenino text-2xl">🏀</span>
+              <div>
+                <h3 class="font-bold mb-2">Categorías</h3>
+                <p class="text-gray-300">
+                  Masculino (6 equipos) | Femenino (10 equipos)
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <span class="text-masculino text-2xl">🎯</span>
+              <div>
+                <h3 class="font-bold mb-2">Resultados</h3>
+                <p class="text-gray-300">Torneo completado exitosamente</p>
+                <p class="text-sm text-gray-400">
+                  Campeones clasificados a Medellín 2026
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="bg-gradient-to-br from-masculino/10 to-femenino/10 rounded-3xl p-8 court-lines"
+        >
+          <h3 class="text-2xl font-bold mb-6 text-center">
+            Programación Inaugural
+          </h3>
+
+          <div class="space-y-4">
+            <div class="bg-white/10 rounded-xl p-4">
+              <h4 class="font-bold text-masculino">Miércoles 22 de Octubre</h4>
+              <ul class="mt-2 space-y-2 text-sm">
+                <li>• 9:00 AM - Reunión de delegados (Teatro Municipal)</li>
+                <li>• 10:00 AM - Desfile inaugural</li>
+                <li>• 11:00 AM - Primera fecha femenino</li>
+                <li>• 4:00 PM - Primera fecha masculino</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

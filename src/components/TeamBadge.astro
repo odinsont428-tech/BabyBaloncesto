@@ -1,0 +1,39 @@
+---
+interface Props {
+  name: string;
+  city?: string;
+  img?: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const { name, city = '', img, size = 'md' } = Astro.props as Props;
+
+let wrapperSize = 'w-12 h-12 p-2.5';
+let imgClass = 'max-h-full max-w-full object-contain';
+let nameClass = 'font-semibold text-sm md:text-base';
+
+if (size === 'sm') {
+  wrapperSize = 'w-10 h-10 p-2';
+  nameClass = 'font-semibold text-sm';
+} else if (size === 'lg') {
+  wrapperSize = 'w-16 h-16 p-3';
+  nameClass = 'font-semibold text-base';
+}
+---
+
+<div class="flex items-center space-x-3 min-w-0">
+  <div class={`bg-white rounded-full flex items-center justify-center overflow-hidden shadow-sm flex-shrink-0 ${wrapperSize}`}>
+    <img
+      src={img}
+      alt={`Escudo ${name}`}
+      class={imgClass}
+      loading="lazy"
+      onerror="this.onerror=null;this.src='/images/placeholder-escudo.png';"
+    />
+  </div>
+
+  <div class="min-w-0">
+    <div class={nameClass + ' truncate'} title={name}>{name}</div>
+    {city && <div class="text-sm text-gray-600 truncate">{city}</div>}
+  </div>
+</div>
