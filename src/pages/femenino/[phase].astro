@@ -9,6 +9,11 @@ import PhotoGallery from '../../components/PhotoGallery.astro';
 import femeninoData from '../../data/femenino.json';
 import femeninoImages from '../../data/femenino-images.json';
 
+export async function getStaticPaths() {
+  const phases = Array.isArray((femeninoData as any).phases) ? (femeninoData as any).phases : [];
+  return phases.map((p: any) => ({ params: { phase: String(p.id) } }));
+}
+
 const phaseId = Astro.params.phase;
 
 const phases = femeninoData.phases || [];

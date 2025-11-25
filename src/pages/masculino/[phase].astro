@@ -10,6 +10,11 @@ import TeamBadge from '../../components/TeamBadge.astro';
 import masculinoData from '../../data/masculino.json';
 import masculinoImages from '../../data/masculino-images.json';
 
+export async function getStaticPaths() {
+  const phases = Array.isArray((masculinoData as any).phases) ? (masculinoData as any).phases : [];
+  return phases.map((p: any) => ({ params: { phase: String(p.id) } }));
+}
+
 const phaseId = Astro.params.phase;
 
 const phases = masculinoData.phases || [];
