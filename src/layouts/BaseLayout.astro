@@ -2,9 +2,27 @@
 export interface Props {
   title: string;
   description?: string;
+  image?: string;
+  url?: string;
 }
 
-const { title, description = "Zonal Baby Baloncesto Nariño y Putumayo 2025 - Proyección Baby Baloncesto Medellín 2026" } = Astro.props;
+const {
+  title,
+  description = "Zonal Baby Baloncesto Nariño y Putumayo 2025 - Proyección Baby Baloncesto Medellín 2026",
+  image = '/favicon.svg',
+  url = ''
+} = Astro.props;
+
+const siteUrl = Astro.site ?? 'https://baby-baloncesto-2025.vercel.app';
+const pageUrl = url ? new URL(url, siteUrl).toString() : siteUrl;
+const fullImage = image && (image.startsWith('http') ? image : new URL(image, siteUrl).toString());
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": siteUrl,
+  "name": title,
+  "description": description,
+};
 ---
 
 <!doctype html>
@@ -16,6 +34,26 @@ const { title, description = "Zonal Baby Baloncesto Nariño y Putumayo 2025 - Pr
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
+
+    <!-- Canonical -->
+    <link rel="canonical" href={pageUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    {fullImage ? <meta property="og:image" content={fullImage} /> : null}
+    <meta property="og:site_name" content="Baby Baloncesto 2025" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content={fullImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {fullImage ? <meta name="twitter:image" content={fullImage} /> : null}
+
+    <!-- Sitemap hint -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
     
     <!-- Poppins Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +62,8 @@ const { title, description = "Zonal Baby Baloncesto Nariño y Putumayo 2025 - Pr
     
     <!-- PhotoSwipe CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.2/dist/photoswipe.css">
+    
+    <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
   </head>
   <body class="font-poppins bg-white text-dark-gray overflow-x-hidden">
     <slot />
@@ -80,36 +120,39 @@ const { title, description = "Zonal Baby Baloncesto Nariño y Putumayo 2025 - Pr
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const phaseSelectors = document.querySelectorAll('.phase-selector');
-    const phaseContents = document.querySelectorAll('.phase-content');
-    
+    const phaseSelectors = Array.from(document.querySelectorAll<HTMLElement>('.phase-selector'));
+    const phaseContents = Array.from(document.querySelectorAll<HTMLElement>('.phase-content'));
+
     phaseSelectors.forEach(selector => {
-      selector.addEventListener('click', function() {
-        const targetPhase = this.getAttribute('data-phase');
-        
+      selector.addEventListener('click', function (e) {
+        const clicked = e.currentTarget as HTMLElement;
+        const targetPhase = clicked.getAttribute('data-phase');
+
         // Remover clase activa de todos los selectores
         phaseSelectors.forEach(s => {
           s.classList.remove('bg-masculino', 'bg-femenino', 'text-white');
           s.classList.add('text-gray-600');
         });
-        
+
         // Agregar clase activa al selector clickeado
-        this.classList.remove('text-gray-600');
-        if (this.closest('[data-category="masculino"]') || window.location.pathname.includes('masculino')) {
-          this.classList.add('bg-masculino', 'text-white');
+        clicked.classList.remove('text-gray-600');
+        if (clicked.closest('[data-category="masculino"]') || window.location.pathname.includes('masculino')) {
+          clicked.classList.add('bg-masculino', 'text-white');
         } else {
-          this.classList.add('bg-femenino', 'text-white');
+          clicked.classList.add('bg-femenino', 'text-white');
         }
-        
+
         // Ocultar todos los contenidos
         phaseContents.forEach(content => {
           content.classList.add('hidden');
         });
-        
+
         // Mostrar el contenido seleccionado
-        const targetContent = document.querySelector(`.phase-content[data-phase="${targetPhase}"]`);
-        if (targetContent) {
-          targetContent.classList.remove('hidden');
+        if (targetPhase) {
+          const targetContent = document.querySelector<HTMLElement>(`.phase-content[data-phase="${targetPhase}"]`);
+          if (targetContent) {
+            targetContent.classList.remove('hidden');
+          }
         }
       });
     });
