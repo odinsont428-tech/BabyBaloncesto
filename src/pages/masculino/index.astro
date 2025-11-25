@@ -5,15 +5,50 @@ import Footer from '../../components/Footer.astro';
 import MatchCard from '../../components/MatchCard.astro';
 import PhotoGallery from '../../components/PhotoGallery.astro';
 import StandingsTable from '../../components/StandingsTable.astro';
-import TopScorersTable from '../../components/TopScorersTable.astro';
+import TopScorersTable from '../../components/TopScorersTable.astro'; 
 import TeamBadge from '../../components/TeamBadge.astro';
 
 // Importar datos dinámicos
 import masculinoData from '../../data/masculino.json';
+import masculinoImages from '../../data/masculino-images.json';
 
-// Obtener todas las fases disponibles
-const phases = masculinoData.phases;
-const currentPhase = phases[phases.length - 1]; // Mostrar la fase más reciente por defecto
+// Obtener todas las fases disponibles y ordenarlas por fecha (descendente) para mostrar la más reciente primero
+const phases = masculinoData.phases || [];
+
+// Helper: parse Spanish date strings like '22 de octubre' or '26 de octubre' or '2025-10-22'
+function parseSpanishDate(dateStr?: string) {
+  if (!dateStr) return 0;
+  // Try ISO first
+  const iso = Date.parse(dateStr);
+  if (!Number.isNaN(iso)) return iso;
+
+  // Spanish month names map
+  const months: Record<string, number> = {
+    'enero': 0, 'febrero': 1, 'marzo': 2, 'abril': 3,
+    'mayo': 4, 'junio': 5, 'julio': 6, 'agosto': 7,
+    'septiembre': 8, 'setiembre': 8, 'octubre': 9, 'noviembre': 10, 'diciembre': 11
+  };
+
+  // Extract numbers/words
+  const normalized = dateStr.toLowerCase().replace(',', '').trim();
+  // Examples: '22 de octubre' or '26 de octubre 2025' or '2025-10-22'
+  const parts = normalized.split(' ');
+  // Find day (first numeric token)
+  const dayToken = parts.find(p => /\d{1,2}/.test(p));
+  const dayNum = dayToken ? Number(dayToken.replace(/\D/g, '')) : NaN;
+  // find month token
+  const monthToken = parts.find(p => Object.prototype.hasOwnProperty.call(months, p));
+  const month = monthToken ? months[monthToken] : undefined;
+  // find year token
+  const yearToken = parts.find(p => /^\d{4}$/.test(p));
+  const year = yearToken ? Number(yearToken) : 2025; // default 2025
+  if (!Number.isFinite(dayNum) || month === undefined) return 0;
+  return new Date(year, month, dayNum).getTime();
+}
+
+// Now sort phases by parsed date descending
+const phasesSorted = [...phases].sort((a, b) => parseSpanishDate(b.date) - parseSpanishDate(a.date));
+const currentPhase = phasesSorted[0] || phases[phases.length - 1];
 const cloudBase = 'https://res.cloudinary.com/dny2fuvgi/image/upload';
 const teamsA = [
   { name: 'Panteras', city: 'Pasto', img: `${cloudBase}/v1763848624/Imagen2_p8xmps.webp` },
@@ -25,6 +60,13 @@ const teamsB = [
   { name: 'Javeriano', city: 'Sibundoy', img: `${cloudBase}/v1763848623/Imagen1_fddlhp.webp` },
   { name: 'S&C', city: 'Contadero', img: `${cloudBase}/v1763848623/SyC_q1ptqn.webp` },
 ];
+const getImagesFor = (idOrName: string) => {
+  const phase = phases.find(p => p.id === idOrName || p.name === idOrName) as any;
+  if (phase?.images?.length) return phase.images;
+  const normalize = (s?: string) => s?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+  const key = normalize(idOrName) || normalize(phase?.id) || normalize(phase?.name);
+  return (key && (masculinoImages as any)[key]) || undefined;
+};
 // Mapa de logos por nombre de equipo (puedes agregar más entradas según necesites)
 const logos = Object.fromEntries([...teamsA, ...teamsB].map(t => [t.name, t.img]));
 ---
@@ -134,10 +176,10 @@ const logos = Object.fromEntries([...teamsA, ...teamsB].map(t => [t.name, t.img]
       <!-- Selector de Fases -->
       <div class="flex justify-center mb-8">
         <div class="bg-white rounded-2xl shadow-lg p-2 flex flex-wrap gap-2">
-          {phases.map((phase, index) => (
+            {phasesSorted.map((phase: any, index: number) => (
             <button 
               class={`px-4 py-2 rounded-xl font-semibold transition-all phase-selector ${
-                index === phases.length - 1 ? 'bg-masculino text-white' : 'text-gray-600 hover:bg-masculino/10'
+                index === 0 ? 'bg-masculino text-white' : 'text-gray-600 hover:bg-masculino/10'
               }`}
               data-phase={phase.id}
             >
@@ -148,9 +190,9 @@ const logos = Object.fromEntries([...teamsA, ...teamsB].map(t => [t.name, t.img]
       </div>
 
       <div class="space-y-12">
-        {phases.map((phase, index) => (
+          {phasesSorted.map((phase: any, index: number) => (
           <div 
-            class={`phase-content ${index === phases.length - 1 ? '' : 'hidden'}`}
+            class={`phase-content ${index === 0 ? '' : 'hidden'}`}
             data-phase={phase.id}
           >
             <!-- Tabla de Posiciones -->
@@ -239,6 +281,7 @@ const logos = Object.fromEntries([...teamsA, ...teamsB].map(t => [t.name, t.img]
             phase="Primera Fecha"
             category="masculino"
             id="masculino-primera"
+            images={getImagesFor('primera-fecha')}
           />
         </div>
       </div>
@@ -293,6 +336,7 @@ const logos = Object.fromEntries([...teamsA, ...teamsB].map(t => [t.name, t.img]
             phase="Segunda Fecha"
             category="masculino"
             id="masculino-segunda"
+            images={getImagesFor('segunda-fecha')}
           />
         </div>
       </div>
@@ -347,6 +391,7 @@ const logos = Object.fromEntries([...teamsA, ...teamsB].map(t => [t.name, t.img]
             phase="Tercera Fecha"
             category="masculino"
             id="masculino-tercera"
+            images={getImagesFor('tercera-fecha')}
           />
         </div>
       </div>
@@ -392,6 +437,7 @@ const logos = Object.fromEntries([...teamsA, ...teamsB].map(t => [t.name, t.img]
             phase="Semifinal"
             category="masculino"
             id="masculino-semifinal"
+            images={getImagesFor('semifinal')}
           />
         </div>
       </div>
@@ -445,6 +491,7 @@ const logos = Object.fromEntries([...teamsA, ...teamsB].map(t => [t.name, t.img]
             phase="Final"
             category="masculino"
             id="masculino-final"
+            images={getImagesFor('final')}
           />
         </div>
       </div>

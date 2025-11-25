@@ -17,7 +17,7 @@ const bgColor = category === 'masculino' ? 'from-masculino/5' : 'from-femenino/5
 const hasResult = result1 !== undefined && result2 !== undefined;
 import TeamBadge from './TeamBadge.astro';
 
-function parseTeam(raw) {
+function parseTeam(raw: any) {
   const parts = String(raw).split(' - ').map(s => s.trim());
   return { name: parts[0] ?? String(raw), city: parts[1] ?? '' };
 }

@@ -1,0 +1,53 @@
+{
+  "primera-fecha": [
+    {
+      "src": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_1200/FB_IMG_1761218647824_zbwyd5.webp",
+      "thumbnail": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_400/FB_IMG_1761218647824_zbwyd5.webp",
+      "alt": "Partido Primera Fecha Femenina - Imagen 1",
+      "width": 1152,
+      "height": 2048
+    },
+    {
+      "src": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_1200/FB_IMG_1761218650298_x0jyhe.webp",
+      "thumbnail": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_400/FB_IMG_1761218650298_x0jyhe.webp",
+      "alt": "Partido Primera Fecha Femenina - Imagen 2",
+      "width": 1152,
+      "height": 2048
+    }
+  ],
+  "segunda-fecha": [
+    {
+      "src": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_1200/FB_IMG_1760982892853_swcho8.webp",
+      "thumbnail": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_400/FB_IMG_1760982892853_swcho8.webp",
+      "alt": "Partido Segunda Fecha Femenina - Imagen 1",
+      "width": 1638,
+      "height": 2048
+    },
+    {
+      "src": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_1200/IMG_20251022_115852_ebeg29.webp",
+      "thumbnail": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_400/IMG_20251022_115852_ebeg29.webp",
+      "alt": "Partido Segunda Fecha Femenina - Imagen 2",
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "tercera-fecha": [
+    {
+      "src": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_1200/FB_IMG_1760982898827_mgwilk.webp",
+      "thumbnail": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_400/FB_IMG_1760982898827_mgwilk.webp",
+      "alt": "Partido Tercera Fecha Femenina - Imagen 1",
+      "width": 1638,
+      "height": 2048
+    },
+    {
+      "src": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_1200/FB_IMG_1760982906657_osbada.webp",
+      "thumbnail": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_400/FB_IMG_1760982906657_osbada.webp",
+      "alt": "Partido Tercera Fecha Femenina - Imagen 2",
+      "width": 1638,
+      "height": 2048
+    }
+  ],
+  "cuartos-de-final": [],
+  "semifinal": [],
+  "final": []
+}

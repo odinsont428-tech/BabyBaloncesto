@@ -11,10 +11,43 @@ import TeamBadge from '../../components/TeamBadge.astro';
 
 // Importar datos dinámicos
 import femeninoData from '../../data/femenino.json';
+import femeninoImages from '../../data/femenino-images.json';
 
-// Obtener todas las fases disponibles
-const phases = femeninoData.phases;
-const currentPhase = phases[phases.length - 1]; // Mostrar la fase más reciente por defecto
+// Obtener todas las fases disponibles y ordenarlas por fecha (descendente) para mostrar la más reciente primero
+const phases = femeninoData.phases || [];
+
+// Helper: parse Spanish date strings like '22 de octubre' or '26 de octubre' or '2025-10-22'
+function parseSpanishDate(dateStr?: string) {
+  if (!dateStr) return 0;
+  const iso = Date.parse(dateStr);
+  if (!Number.isNaN(iso)) return iso;
+  const months: Record<string, number> = {
+    'enero': 0, 'febrero': 1, 'marzo': 2, 'abril': 3,
+    'mayo': 4, 'junio': 5, 'julio': 6, 'agosto': 7,
+    'septiembre': 8, 'setiembre': 8, 'octubre': 9, 'noviembre': 10, 'diciembre': 11
+  };
+  const normalized = dateStr.toLowerCase().replace(',', '').trim();
+  const parts = normalized.split(' ');
+  const dayToken = parts.find(p => /\d{1,2}/.test(p));
+  const dayNum = dayToken ? Number(dayToken.replace(/\D/g, '')) : NaN;
+  const monthToken = parts.find(p => Object.prototype.hasOwnProperty.call(months, p));
+  const month = monthToken ? months[monthToken] : undefined;
+  const yearToken = parts.find(p => /^\d{4}$/.test(p));
+  const year = yearToken ? Number(yearToken) : 2025;
+  if (!Number.isFinite(dayNum) || month === undefined) return 0;
+  return new Date(year, month, dayNum).getTime();
+}
+
+// Now sort phases by parsed date descending
+const phasesSorted = [...phases].sort((a, b) => parseSpanishDate(b.date) - parseSpanishDate(a.date));
+const currentPhase = phasesSorted[0] || phases[phases.length - 1];
+const getImagesFor = (idOrName: string) => {
+  const phase = phases.find(p => p.id === idOrName || p.name === idOrName) as any;
+  if (phase?.images?.length) return phase.images;
+  const normalize = (s?: string) => s?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+  const key = normalize(idOrName) || normalize(phase?.id) || normalize(phase?.name);
+  return (key && (femeninoImages as any)[key]) || undefined;
+};
 // Mapa vacío de logos (puedes rellenarlo con las URLs de Cloudinary más adelante)
 const logos = {
   "Wasps Club A": "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763848236/logoWasps_hcnejv.webp",
@@ -170,10 +203,10 @@ const groups = femeninoData.groups || {};
       <!-- Selector de Fases -->
       <div class="flex justify-center mb-8">
         <div class="bg-white rounded-2xl shadow-lg p-2 flex flex-wrap gap-2">
-          {phases.map((phase, index) => (
+          {phasesSorted.map((phase: any, index: number) => (
             <button 
               class={`px-4 py-2 rounded-xl font-semibold transition-all phase-selector ${
-                index === phases.length - 1 ? 'bg-femenino text-white' : 'text-gray-600 hover:bg-femenino/10'
+                index === 0 ? 'bg-femenino text-white' : 'text-gray-600 hover:bg-femenino/10'
               }`}
               data-phase={phase.id}
             >
@@ -184,9 +217,9 @@ const groups = femeninoData.groups || {};
       </div>
 
       <div class="space-y-12">
-        {phases.map((phase, index) => (
+          {phasesSorted.map((phase: any, index: number) => (
           <div 
-            class={`phase-content ${index === phases.length - 1 ? '' : 'hidden'}`}
+            class={`phase-content ${index === 0 ? '' : 'hidden'}`}
             data-phase={phase.id}
           >
             <!-- Tabla de Posiciones -->
@@ -295,6 +328,7 @@ const groups = femeninoData.groups || {};
             phase="Primera Fecha"
             category="femenino"
             id="femenino-primera"
+            images={getImagesFor('primera-fecha')}
           />
         </div>
       </div>
@@ -369,6 +403,7 @@ const groups = femeninoData.groups || {};
             phase="Segunda Fecha"
             category="femenino"
             id="femenino-segunda"
+            images={getImagesFor('segunda-fecha')}
           />
         </div>
       </div>
@@ -443,6 +478,7 @@ const groups = femeninoData.groups || {};
             phase="Tercera Fecha"
             category="femenino"
             id="femenino-tercera"
+            images={getImagesFor('tercera-fecha')}
           />
         </div>
       </div>
@@ -508,6 +544,7 @@ const groups = femeninoData.groups || {};
             phase="Cuartos de Final"
             category="femenino"
             id="femenino-cuartos"
+            images={getImagesFor('cuartos-de-final')}
           />
         </div>
       </div>
@@ -552,6 +589,7 @@ const groups = femeninoData.groups || {};
             phase="Semifinal"
             category="femenino"
             id="femenino-semifinal"
+            images={getImagesFor('semifinal')}
           />
         </div>
       </div>
@@ -605,6 +643,7 @@ const groups = femeninoData.groups || {};
             phase="Final"
             category="femenino"
             id="femenino-final"
+            images={getImagesFor('final')}
           />
         </div>
       </div>
