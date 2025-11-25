@@ -1,16 +1,47 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 const patrocinadores = [
-  { name: 'Alcaldía de Puerres', logo: '🏛️', description: 'Gobierno Municipal' },
-  { name: 'Corporación Los Paisitas', logo: '🤝', description: 'Corporación Social y Deportiva' },
-  { name: 'LAB', logo: '🏀', description: 'Liga Antioqueña de Baloncesto' },
-  { name: 'OSBOL', logo: '⚡', description: 'Organización Deportiva' },
-  { name: 'Fortaleza', logo: '💪', description: 'Apoyo Deportivo' },
-  { name: 'Festival de Festivales', logo: '🎊', description: 'Eventos y Cultura' },
-  { name: 'Lácteos Santa María', logo: '🥛', description: 'Empresa Alimentaria' }
+  {
+    name: "Alcaldía de Puerres",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763851025/image_1_ofgdt4.webp",
+    description: "Gobierno Municipal",
+  },
+  {
+    name: "Lácteos Santa María",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763851026/image_devfya.webp",
+
+    description: "Empresa Alimentaria",
+  },
+  {
+    name: "Corporación Los Paisitas",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763852525/image_8_kaqplu.webp",
+
+    description: "Corporación Social y Deportiva",
+  },
+  {
+    name: "LAB",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763851022/image_5_ssu3ie.webp",
+    description: "Liga Antioqueña de Baloncesto",
+  },
+  {
+    name: "OSBOL",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763851023/image_3_wrbp6q.webp",
+    description: "Organización Deportiva",
+  },
+  {
+    name: "Fortaleza",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763851023/image_4_vpj13e.webp",
+    description: "Apoyo Deportivo",
+  },
+  {
+    name: "Festival de Festivales",
+    img: "https://res.cloudinary.com/dny2fuvgi/image/upload/v1763851024/image_2_hoh6eh.webp",
+
+    description: "Eventos y Cultura",
+  },
 ];
 ---
 
@@ -18,47 +49,84 @@ const patrocinadores = [
   <Header />
 
   <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-masculino/10 via-white to-femenino/10 overflow-hidden">
+  <section
+    class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-masculino/10 via-white to-femenino/10 overflow-hidden"
+  >
     <!-- Animated background -->
     <div class="absolute inset-0">
-      <div class="absolute top-10 left-10 w-32 h-32 bg-masculino/10 rounded-full animate-pulse"></div>
-      <div class="absolute top-1/2 right-20 w-24 h-24 bg-femenino/10 rounded-full animate-bounce-slow"></div>
-      <div class="absolute bottom-20 left-1/4 w-40 h-40 bg-masculino/5 rounded-full animate-pulse"></div>
-      <div class="absolute top-20 right-1/3 w-16 h-16 bg-femenino/20 rounded-full animate-float"></div>
+      <div
+        class="absolute top-10 left-10 w-32 h-32 bg-masculino/10 rounded-full animate-pulse"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 right-20 w-24 h-24 bg-femenino/10 rounded-full animate-bounce-slow"
+      >
+      </div>
+      <div
+        class="absolute bottom-20 left-1/4 w-40 h-40 bg-masculino/5 rounded-full animate-pulse"
+      >
+      </div>
+      <div
+        class="absolute top-20 right-1/3 w-16 h-16 bg-femenino/20 rounded-full animate-float"
+      >
+      </div>
     </div>
 
-    <div class="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div
+      class="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+    >
       <!-- Título principal -->
       <div class="mb-12">
         <h1 class="text-4xl md:text-6xl font-black text-dark-gray mb-6">
           <span class="gradient-text">GRACIAS</span>
-          <span class="block text-3xl md:text-4xl font-semibold mt-4">Por hacer posible este sueño</span>
+          <span class="block text-3xl md:text-4xl font-semibold mt-4"
+            >Por hacer posible este sueño</span
+          >
         </h1>
-        
-        <div class="w-32 h-32 mx-auto bg-gradient-to-br from-masculino to-femenino rounded-full flex items-center justify-center text-5xl shadow-2xl mb-8 animate-float">
+
+        <div
+          class="w-32 h-32 mx-auto bg-gradient-to-br from-masculino to-femenino rounded-full flex items-center justify-center text-5xl shadow-2xl mb-8 animate-float"
+        >
           🙏
         </div>
       </div>
 
       <!-- Mensaje principal -->
-      <div class="bg-white/80 backdrop-blur rounded-3xl p-8 md:p-12 shadow-2xl mb-12">
-        <p class="text-xl md:text-2xl text-dark-gray leading-relaxed font-medium">
-          "Gracias a quienes hacen posible el desarrollo del deporte y los sueños de nuestros niños."
+      <div
+        class="bg-white/80 backdrop-blur rounded-3xl p-8 md:p-12 shadow-2xl mb-12"
+      >
+        <p
+          class="text-xl md:text-2xl text-dark-gray leading-relaxed font-medium"
+        >
+          "Gracias a quienes hacen posible el desarrollo del deporte y los
+          sueños de nuestros niños."
         </p>
-        
+
         <div class="mt-8 flex justify-center space-x-4">
           <span class="text-4xl animate-bounce">⭐</span>
-          <span class="text-4xl animate-bounce" style="animation-delay: 0.2s">✨</span>
-          <span class="text-4xl animate-bounce" style="animation-delay: 0.4s">🏆</span>
-          <span class="text-4xl animate-bounce" style="animation-delay: 0.6s">✨</span>
-          <span class="text-4xl animate-bounce" style="animation-delay: 0.8s">⭐</span>
+          <span class="text-4xl animate-bounce" style="animation-delay: 0.2s"
+            >✨</span
+          >
+          <span class="text-4xl animate-bounce" style="animation-delay: 0.4s"
+            >🏆</span
+          >
+          <span class="text-4xl animate-bounce" style="animation-delay: 0.6s"
+            >✨</span
+          >
+          <span class="text-4xl animate-bounce" style="animation-delay: 0.8s"
+            >⭐</span
+          >
         </div>
       </div>
 
       <!-- Quote inspiracional -->
       <div class="text-center mb-12">
-        <blockquote class="text-lg md:text-xl italic text-gray-700 max-w-3xl mx-auto">
-          "El deporte no construye el carácter. Lo revela. Y ustedes han revelado un corazón generoso que impulsa los sueños de nuestra juventud."
+        <blockquote
+          class="text-lg md:text-xl italic text-gray-700 max-w-3xl mx-auto"
+        >
+          "El deporte no construye el carácter. Lo revela. Y ustedes han
+          revelado un corazón generoso que impulsa los sueños de nuestra
+          juventud."
         </blockquote>
       </div>
     </div>
@@ -77,59 +145,101 @@ const patrocinadores = [
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {patrocinadores.map((patrocinador, index) => (
-          <div 
-            class="bg-gradient-to-br from-light-gray to-white rounded-3xl p-8 text-center hover-lift hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-masculino/20 group"
-            style={`animation-delay: ${index * 150}ms`}
-          >
-            <div class="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
-              {patrocinador.logo}
-            </div>
-            <h3 class="text-xl font-bold text-dark-gray mb-2 group-hover:text-masculino transition-colors">
-              {patrocinador.name}
-            </h3>
-            <p class="text-gray-600">
-              {patrocinador.description}
-            </p>
-          </div>
-        ))}
+        {
+          patrocinadores.map((patrocinador, index) => (
+<div
+  class="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 text-center
+         border border-transparent shadow-md
+         hover:shadow-2xl hover:-translate-y-1 hover:border-masculino/30
+         transition-all duration-300 group"
+  style={`animation-delay: ${index * 150}ms`}
+>
+  <!-- Contenedor del logo -->
+  <div class="w-40 h-40 md:w-32 md:h-32 rounded-full bg-white 
+              shadow-md mx-auto flex items-center justify-center
+              group-hover:scale-105 transition-transform">
+    <img
+      src={patrocinador.img}
+      alt={`Logo ${patrocinador.name}`}
+      title={patrocinador.name}
+      class="w-28 h-28 md:w-24 md:h-24 object-contain mx-auto"
+      loading="lazy"
+      onerror="this.onerror=null;this.src='/images/placeholder-escudo.png'; this.classList.add('opacity-70');"
+    />
+  </div>
+
+  <!-- Nombre -->
+
+  <h3 class="text-lg md:text-xl font-extrabold text-gray-800 mt-4
+             group-hover:text-masculino transition-colors">
+    {patrocinador.name}
+  </h3>
+
+  <!-- Descripción -->
+
+  <p class="text-gray-500 text-sm mt-1 leading-tight">
+    {patrocinador.description}
+  </p>
+</div>
+
+          ))
+        }
       </div>
     </div>
   </section>
 
   <!-- Sección de Reconocimiento Especial -->
-  <section class="py-20 bg-gradient-to-br from-masculino/10 via-femenino/5 to-masculino/5">
+  <section
+    class="py-20 bg-gradient-to-br from-masculino/10 via-femenino/5 to-masculino/5"
+  >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="bg-white/90 backdrop-blur rounded-3xl p-8 md:p-16 shadow-2xl">
         <div class="text-center">
           <h2 class="text-3xl md:text-4xl font-black text-dark-gray mb-8">
             RECONOCIMIENTO <span class="gradient-text">ESPECIAL</span>
           </h2>
-          
+
           <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 text-left">
               <div>
-                <h3 class="text-2xl font-bold text-masculino mb-2">🏆 Corporación Social y Deportiva Los Paisitas</h3>
-                <p class="text-gray-700">Por su aval y compromiso constante con el desarrollo del baloncesto en Colombia.</p>
+                <h3 class="text-2xl font-bold text-masculino mb-2">
+                  🏆 Corporación Social y Deportiva Los Paisitas
+                </h3>
+                <p class="text-gray-700">
+                  Por su aval y compromiso constante con el desarrollo del
+                  baloncesto en Colombia.
+                </p>
               </div>
-              
+
               <div>
-                <h3 class="text-2xl font-bold text-femenino mb-2">🏀 Liga Antioqueña de Baloncesto (LAB)</h3>
-                <p class="text-gray-700">Por su apoyo técnico y respaldo institucional al torneo zonal.</p>
+                <h3 class="text-2xl font-bold text-femenino mb-2">
+                  🏀 Liga Antioqueña de Baloncesto (LAB)
+                </h3>
+                <p class="text-gray-700">
+                  Por su apoyo técnico y respaldo institucional al torneo zonal.
+                </p>
               </div>
-              
+
               <div>
-                <h3 class="text-2xl font-bold text-masculino mb-2">🏛️ Alcaldía de Puerres</h3>
-                <p class="text-gray-700">Por abrir las puertas de su municipio y brindar las facilidades para este gran evento.</p>
+                <h3 class="text-2xl font-bold text-masculino mb-2">
+                  🏛️ Alcaldía de Puerres
+                </h3>
+                <p class="text-gray-700">
+                  Por abrir las puertas de su municipio y brindar las
+                  facilidades para este gran evento.
+                </p>
               </div>
             </div>
 
             <div class="text-center">
-              <div class="w-48 h-48 mx-auto bg-gradient-to-br from-masculino/20 to-femenino/20 rounded-full flex items-center justify-center text-8xl mb-6 shadow-2xl animate-pulse-slow">
+              <div
+                class="w-48 h-48 mx-auto bg-gradient-to-br from-masculino/20 to-femenino/20 rounded-full flex items-center justify-center text-8xl mb-6 shadow-2xl animate-pulse-slow"
+              >
                 🏆
               </div>
               <p class="text-lg font-semibold text-gray-700">
-                Su apoyo hace posible que los sueños de nuestros jóvenes atletas se conviertan en realidad.
+                Su apoyo hace posible que los sueños de nuestros jóvenes atletas
+                se conviertan en realidad.
               </p>
             </div>
           </div>
@@ -145,11 +255,12 @@ const patrocinadores = [
         <h2 class="text-3xl md:text-4xl font-black">
           <span class="gradient-text">HASTA LA VICTORIA SIEMPRE</span>
         </h2>
-        
+
         <p class="text-xl leading-relaxed text-gray-300">
-          Este torneo es más que una competencia deportiva; es una celebración del talento, 
-          la dedicación y los sueños de nuestros jóvenes atletas. Gracias a todos los que 
-          han hecho posible esta experiencia inolvidable.
+          Este torneo es más que una competencia deportiva; es una celebración
+          del talento, la dedicación y los sueños de nuestros jóvenes atletas.
+          Gracias a todos los que han hecho posible esta experiencia
+          inolvidable.
         </p>
 
         <div class="flex justify-center space-x-6 text-4xl">
@@ -158,7 +269,9 @@ const patrocinadores = [
           <span class="animate-bounce" style="animation-delay: 0.4s">🏆</span>
         </div>
 
-        <div class="bg-gradient-to-r from-masculino/20 to-femenino/20 rounded-2xl p-6">
+        <div
+          class="bg-gradient-to-r from-masculino/20 to-femenino/20 rounded-2xl p-6"
+        >
           <p class="text-lg font-semibold">
             ¡Nos vemos en Baby Baloncesto Medellín 2026!
           </p>

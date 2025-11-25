@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import StandingsTable from '../../components/StandingsTable.astro';
+import TopScorersTable from '../../components/TopScorersTable.astro';
+import PhotoGallery from '../../components/PhotoGallery.astro';
+
+import femeninoData from '../../data/femenino.json';
+import femeninoImages from '../../data/femenino-images.json';
+
+const phaseId = Astro.params.phase;
+
+const phases = femeninoData.phases || [];
+const phase = phases.find((p: any) => p.id === phaseId || p.name === phaseId);
+
+const cloudBase = 'https://res.cloudinary.com/dny2fuvgi/image/upload';
+const teamsA = [
+  { name: "Club Atenas", city: 'Contadero', img: `${cloudBase}/v1763848623/Imagen6_hf87r7.webp` },
+  { name: "Club Phoenix", city: 'Pasto', img: `${cloudBase}/v1763848624/Imagen2_p8xmps.webp` },
+];
+
+const logos = Object.fromEntries([...teamsA].map(t => [t.name, t.img]));
+
+const normalize = (s?: string) => s?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+const getImagesFor = (idOrName: string) => {
+  const ph = phases.find(p => p.id === idOrName || p.name === idOrName) as any;
+  if (ph?.images?.length) return ph.images;
+  const key = normalize(idOrName) || normalize(ph?.id) || normalize(ph?.name);
+  return (key && (femeninoImages as any)[key]) || undefined;
+};
+
+const title = phase ? `Femenino — ${phase.name} | Baby Baloncesto 2025` : 'Femenino — Fase no encontrada';
+const description = phase ? `Resultados, tablas y fotos de la fase ${phase.name} — Categoría Femenina.` : 'Fase no encontrada.';
+
+---
+
+<BaseLayout title={title} description={description} url={`/femenino/${phaseId}`}>
+  <Header />
+
+  <main class="max-w-6xl mx-auto px-4 py-12">
+    {phase ? (
+      <section>
+        <h1 class="text-3xl font-black mb-4">{phase.name} — Femenina</h1>
+        <p class="text-gray-700 mb-8">{phase.date}</p>
+
+        <div class="mb-8">
+          <StandingsTable standings={phase.standings} category="femenino" phase={phase.name} logos={logos} />
+        </div>
+
+        <div class="mb-8">
+          <TopScorersTable topScorers={phase.top_scorers} category="femenino" phase={phase.name} logos={logos} />
+        </div>
+
+        <div>
+          <PhotoGallery phase={phase.name} category="femenino" id={`femenino-${phase.id}`} images={getImagesFor(phase.id)} />
+        </div>
+      </section>
+    ) : (
+      <section>
+        <h1 class="text-3xl font-black mb-4">Fase no encontrada</h1>
+        <p class="text-gray-700">No se encontró la fase solicitada. Revisa la URL o vuelve a la <a href="/femenino/" class="text-femenino underline">página principal femenina</a>.</p>
+      </section>
+    )}
+  </main>
+
+  <Footer />
+</BaseLayout>

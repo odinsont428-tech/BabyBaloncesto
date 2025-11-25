@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import StandingsTable from '../../components/StandingsTable.astro';
+import TopScorersTable from '../../components/TopScorersTable.astro';
+import PhotoGallery from '../../components/PhotoGallery.astro';
+import TeamBadge from '../../components/TeamBadge.astro';
+
+import masculinoData from '../../data/masculino.json';
+import masculinoImages from '../../data/masculino-images.json';
+
+const phaseId = Astro.params.phase;
+
+const phases = masculinoData.phases || [];
+const phase = phases.find((p: any) => p.id === phaseId || p.name === phaseId);
+
+const cloudBase = 'https://res.cloudinary.com/dny2fuvgi/image/upload';
+const teamsA = [
+  { name: 'Panteras', city: 'Pasto', img: `${cloudBase}/v1763848624/Imagen2_p8xmps.webp` },
+  { name: 'Wasps', city: 'Sibundoy', img: `${cloudBase}/v1763848236/logoWasps_hcnejv.webp` },
+  { name: 'Atenas', city: 'Contadero', img: `${cloudBase}/v1763848623/Imagen6_hf87r7.webp` },
+];
+const teamsB = [
+  { name: 'Berchos', city: 'Pasto', img: `${cloudBase}/v1763848625/Imagen4_q7h4xc.webp` },
+  { name: 'Javeriano', city: 'Sibundoy', img: `${cloudBase}/v1763848623/Imagen1_fddlhp.webp` },
+  { name: 'S&C', city: 'Contadero', img: `${cloudBase}/v1763848623/SyC_q1ptqn.webp` },
+];
+
+const logos = Object.fromEntries([...teamsA, ...teamsB].map(t => [t.name, t.img]));
+
+const normalize = (s?: string) => s?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+const getImagesFor = (idOrName: string) => {
+  const ph = phases.find(p => p.id === idOrName || p.name === idOrName) as any;
+  if (ph?.images?.length) return ph.images;
+  const key = normalize(idOrName) || normalize(ph?.id) || normalize(ph?.name);
+  return (key && (masculinoImages as any)[key]) || undefined;
+};
+
+const title = phase ? `Masculino — ${phase.name} | Baby Baloncesto 2025` : 'Masculino — Fase no encontrada';
+const description = phase ? `Resultados, tablas y fotos de la fase ${phase.name} — Categoría Masculina.` : 'Fase no encontrada.';
+
+---
+
+<BaseLayout title={title} description={description} url={`/masculino/${phaseId}`}>
+  <Header />
+
+  <main class="max-w-6xl mx-auto px-4 py-12">
+    {phase ? (
+      <section>
+        <h1 class="text-3xl font-black mb-4">{phase.name} — Masculina</h1>
+        <p class="text-gray-700 mb-8">{phase.date}</p>
+
+        <div class="mb-8">
+          <StandingsTable standings={phase.standings} category="masculino" phase={phase.name} logos={logos} />
+        </div>
+
+        <div class="mb-8">
+          <TopScorersTable topScorers={phase.top_scorers} category="masculino" phase={phase.name} logos={logos} />
+        </div>
+
+        <div>
+          <PhotoGallery phase={phase.name} category="masculino" id={`masculino-${phase.id}`} images={getImagesFor(phase.id)} />
+        </div>
+      </section>
+    ) : (
+      <section>
+        <h1 class="text-3xl font-black mb-4">Fase no encontrada</h1>
+        <p class="text-gray-700">No se encontró la fase solicitada. Revisa la URL o vuelve a la <a href="/masculino/" class="text-masculino underline">página principal masculina</a>.</p>
+      </section>
+    )}
+  </main>
+
+  <Footer />
+</BaseLayout>

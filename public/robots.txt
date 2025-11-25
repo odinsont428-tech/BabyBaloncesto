@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://baby-baloncesto-2025.vercel.app/sitemap.xml
+
+# Crawl-delay: 10
