@@ -1183,6 +1183,20 @@
 ]
 ,
   "cuartos-de-final": [
+            {
+          "src": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_1200/0_freqhs?_a=BAMAK+Rk0",
+          "thumbnail": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_400/0_freqhs?_a=BAMAK+Rk0",
+          "alt": "0 freqhs",
+          "caption": "",
+          "width": 1481,
+          "height": 2048,
+          "srcWidth": 1200,
+          "srcHeight": 1659,
+          "thumbnailWidth": 400,
+          "thumbnailHeight": 553,
+          "public_id": "0_freqhs",
+          "format": "jpg"
+        },
   {
     "src": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_1200/1_kgijeo?_a=BAMAK+Rk0",
     "thumbnail": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_400/1_kgijeo?_a=BAMAK+Rk0",
@@ -1298,20 +1312,7 @@
 ]
 ,
   "semifinal": [
-        {
-          "src": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_1200/0_freqhs?_a=BAMAK+Rk0",
-          "thumbnail": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_400/0_freqhs?_a=BAMAK+Rk0",
-          "alt": "0 freqhs",
-          "caption": "",
-          "width": 1481,
-          "height": 2048,
-          "srcWidth": 1200,
-          "srcHeight": 1659,
-          "thumbnailWidth": 400,
-          "thumbnailHeight": 553,
-          "public_id": "0_freqhs",
-          "format": "jpg"
-        },
+
         {
           "src": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_1200/1_vxohtr?_a=BAMAK+Rk0",
           "thumbnail": "https://res.cloudinary.com/dny2fuvgi/image/upload/c_limit,f_auto,w_400/1_vxohtr?_a=BAMAK+Rk0",
